@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#183f36">
+  <meta name="theme-color" content="#386765">
   <meta name="description" content="走進真耶穌教會臺灣總會七樓展廳，以360度實景、語音與百年歷程，展開臺灣傳教100周年的線上尋根之旅。">
   <title>百年足跡｜線上尋根之旅</title>
   <link rel="stylesheet" href="vendor/pannellum.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20261010-quiet1">
   <script src="vendor/pannellum.js" defer></script>
-  <script src="app.js?v=20261010-speed1" defer></script>
+  <script src="app.js?v=20261010-quiet1" defer></script>
 </head>
-<body>
+<body data-page="tour">
   <a class="skip-link" href="#main">跳至導覽內容</a>
   <header class="site-header">
     <a class="brand" href="#tour" aria-label="百年足跡首頁"><span class="century">100<span>1926—2026</span></span><span class="brand-text">百年足跡<small>真耶穌教會臺灣總會</small></span></a>
@@ -23,10 +23,10 @@
       <div class="intro"><div><p class="eyebrow">A JOURNEY THROUGH A CENTURY</p><h1>走進一個空間，<span>遇見百年足跡。</span></h1></div><p class="intro-copy">轉動視角，聆聽故事。<br>從七樓展廳出發，慢慢走進臺灣傳教的記憶。</p></div>
       <div class="tour-layout">
         <div class="viewer-shell" id="viewer-shell">
-          <div id="panorama" tabindex="0" aria-label="360度全景，拖曳或使用方向鍵轉動視角"></div>
-          <img id="fallback-image" class="fallback-image" src="assets/pano-13-preview.webp" fetchpriority="high" alt="">
+          <div id="panorama" tabindex="0" aria-busy="true" aria-label="360度全景，拖曳或使用方向鍵轉動視角"></div>
+          <img id="fallback-image" class="fallback-image" alt="" hidden>
           <div class="viewer-top"><span class="live-badge"><span></span>360° 實景導覽</span><button class="glass-button" id="route-button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6ZM9 3v15m6-12v15"/></svg>導覽路線</button></div>
-          <div id="viewer-status" class="loading-message" role="status"><span class="loader"></span>正在走進展廳…</div>
+          <div id="viewer-status" class="loading-message" data-state="loading" role="status">正在載入360°實景…</div>
           <div class="scene-caption"><span class="scene-location" id="scene-location">7F · 七樓展廳</span><h2 id="scene-title">七樓展廳</h2><p id="scene-subtitle">拖曳畫面，看看身邊的展覽</p></div>
           <div class="viewer-controls" aria-label="全景控制">
             <button id="zoom-in" title="放大" aria-label="放大"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>

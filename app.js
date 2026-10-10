@@ -5,7 +5,7 @@ let data, viewer, currentScene, currentTrack, rotating = false, loadFailed = fal
 let sceneLoading = true, pendingScene = null;
 let prefetchTimer = null, prefetchController = null, prefetchPath = null;
 const prefetched = new Set();
-const assetVersion = '20261010-speed1';
+const assetVersion = '20261010-quiet1';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile = window.matchMedia('(max-width: 720px)').matches;
 const panoramaPath = (scene) => mobile || navigator.connection?.saveData ? scene.lowImage : scene.image;
@@ -14,11 +14,26 @@ const iconArrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-
 const iconInfo = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10v7"/><circle cx="12" cy="6.5" r=".5" fill="currentColor"/></svg>';
 const setText = (id,text) => { $(id).textContent = text; };
 
-function showScenePreview(id) {
+function showViewerStatus(message, state = 'loading') {
+  ui.status.textContent = message;
+  ui.status.dataset.state = state;
+  ui.status.setAttribute('role',state === 'error' ? 'alert' : 'status');
+  ui.status.hidden = false;
+  $('panorama').setAttribute('aria-busy',String(state === 'loading'));
+}
+
+function clearViewerStatus() {
+  ui.status.hidden = true;
+  ui.status.dataset.state = 'ready';
+  $('panorama').setAttribute('aria-busy','false');
+}
+
+function showFallbackPhoto(id, message) {
   const image = $('fallback-image');
-  image.src = data.scenes[id].preview || data.scenes[id].thumb;
-  image.alt = '';
+  image.src = panoramaPath(data.scenes[id]);
+  image.alt = data.scenes[id].title + '全景照片';
   image.hidden = false;
+  showViewerStatus(message,'error');
 }
 
 function cancelPrefetch(nextPath) {
@@ -50,6 +65,7 @@ function prefetchNextScene(id) {
 
 function showTab(name, writeHash = true) {
   name = name === 'history' ? 'history' : 'tour';
+  document.body.dataset.page = name;
   $('tour-tab').hidden = name !== 'tour';
   $('history-tab').hidden = name !== 'history';
   document.querySelectorAll('[data-tab]').forEach(button => {
@@ -98,14 +114,12 @@ function goToScene(id) {
   if (sceneLoading && viewer && !loadFailed) { pendingScene = id; return; }
   if (id === currentScene && viewer && !loadFailed) return;
   cancelPrefetch(panoramaPath(data.scenes[id]));
-  ui.status.hidden = false;
-  ui.status.innerHTML = '<span class="loader"></span>正在走進下一站…';
   if (viewer && !loadFailed) {
+    showViewerStatus('正在載入下一站…');
     sceneLoading = true;
     viewer.loadScene(id,data.scenes[id].pitch || 0,data.scenes[id].yaw,mobile ? 85 : 95);
   } else {
-    $('fallback-image').src = panoramaPath(data.scenes[id]);
-    ui.status.hidden = true;
+    showFallbackPhoto(id,'360°全景暫時無法顯示，目前顯示照片；可重新整理重試，或繼續選擇展區與聆聽語音。');
     sceneLoading = false;
     updateScene(id);
   }
@@ -255,21 +269,23 @@ async function init() {
     for (const hotspot of (scene.info || [])) configScenes[id].hotSpots.push({pitch:hotspot.pitch || 0,yaw:hotspot.yaw,cssClass:'tour-hotspot info-hotspot',createTooltipFunc:makeHotspot,createTooltipArgs:{label:hotspot.label,panel:hotspot.panel}});
   }
   selectTrack(0);
-  showScenePreview(currentScene);
+  showViewerStatus('正在載入360°實景…');
   try {
     if (!window.pannellum) throw new Error('全景元件未載入');
-    viewer = pannellum.viewer('panorama',{default:{firstScene:currentScene,autoLoad:true,showControls:false,mouseZoom:true,sceneFadeDuration:reducedMotion?0:200,ignoreGPanoXMP:true,minHfov:45,maxHfov:115,escapeHTML:true,orientationOnByDefault:false,strings:{loadingLabel:'正在載入全景…',genericWebGLError:'此裝置暫時無法顯示360全景。',noWebGLError:'此瀏覽器不支援360全景。',textureSizeError:'裝置無法載入這張全景，請使用較新的瀏覽器。'}},scenes:configScenes});
+    // Native scene fading keeps the previous rendered perspective until the new
+    // panorama is ready. A nearly instant fade retains this during reduced motion.
+    viewer = pannellum.viewer('panorama',{default:{firstScene:currentScene,autoLoad:true,showControls:false,mouseZoom:true,sceneFadeDuration:reducedMotion?1:180,ignoreGPanoXMP:true,minHfov:45,maxHfov:115,escapeHTML:true,orientationOnByDefault:false,strings:{loadingLabel:'正在載入全景…',genericWebGLError:'此裝置暫時無法顯示360全景。',noWebGLError:'此瀏覽器不支援360全景。',textureSizeError:'裝置無法載入這張全景，請使用較新的瀏覽器。'}},scenes:configScenes});
     viewer.on('load',() => {
-      ui.status.hidden = true; loadFailed = false; sceneLoading = false; $('fallback-image').hidden = true;
+      clearViewerStatus(); loadFailed = false; sceneLoading = false; $('fallback-image').hidden = true;
       const next = pendingScene; pendingScene = null;
       if (next && next !== currentScene) goToScene(next);
       else prefetchNextScene(currentScene);
     });
-    viewer.on('scenechange',id => { ui.audio.pause(); stopRotation(); updateScene(id); showScenePreview(id); });
-    viewer.on('error',message => { loadFailed = true; sceneLoading = false; pendingScene = null; $('fallback-image').src = panoramaPath(data.scenes[currentScene]); $('fallback-image').alt = '展廳全景照片'; $('fallback-image').hidden = false; ui.status.hidden = false; ui.status.textContent = '此裝置無法顯示360全景，目前顯示照片。展區選單及語音仍可使用。'; ui.status.style.whiteSpace = 'normal'; ui.status.style.width = 'min(330px,80%)'; console.warn(message); });
+    viewer.on('scenechange',id => { ui.audio.pause(); stopRotation(); updateScene(id); });
+    viewer.on('error',message => { loadFailed = true; sceneLoading = false; pendingScene = null; showFallbackPhoto(currentScene,'360°全景暫時無法顯示，目前顯示照片；可重新整理重試，或繼續選擇展區與聆聽語音。'); console.warn(message); });
     viewer.on('mousedown',() => { stopRotation(); $('drag-tip').style.opacity = '.65'; });
     viewer.on('touchstart',stopRotation);
-  } catch (error) { loadFailed = true; $('fallback-image').src = data.scenes[currentScene].image; $('fallback-image').hidden = false; ui.status.textContent = '全景暫時無法啟動，目前顯示照片。請以展區選單繼續參觀。'; console.error(error); }
+  } catch (error) { loadFailed = true; sceneLoading = false; showFallbackPhoto(currentScene,'360°全景暫時無法啟動，目前顯示照片；可重新整理重試，或以展區選單繼續參觀。'); console.error(error); }
   updateScene(currentScene);
   showTab(startHistory?'history':'tour');
 }
@@ -282,4 +298,4 @@ window.addEventListener('hashchange',() => {
     if (id !== currentScene && data.scenes[id]) goToScene(id);
   }
 });
-init().catch(error => { ui.status.textContent = '導覽未能載入，請重新整理頁面。'; console.error(error); });
+init().catch(error => { sceneLoading = false; showViewerStatus('導覽資料未能載入，請重新整理頁面。','error'); console.error(error); });
