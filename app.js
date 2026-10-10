@@ -3,12 +3,50 @@ const $ = (id) => document.getElementById(id);
 const ui = { audio: $('audio'), status: $('viewer-status') };
 let data, viewer, currentScene, currentTrack, rotating = false, loadFailed = false;
 let sceneLoading = true, pendingScene = null;
+let prefetchTimer = null, prefetchController = null, prefetchPath = null;
+const prefetched = new Set();
+const assetVersion = '20261010-speed1';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile = window.matchMedia('(max-width: 720px)').matches;
+const panoramaPath = (scene) => mobile || navigator.connection?.saveData ? scene.lowImage : scene.image;
 const formatTime = (n) => Number.isFinite(n) ? `${String(Math.floor(n / 60)).padStart(2,'0')}:${String(Math.floor(n % 60)).padStart(2,'0')}` : '--:--';
 const iconArrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6M12 8v12"/></svg>';
 const iconInfo = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10v7"/><circle cx="12" cy="6.5" r=".5" fill="currentColor"/></svg>';
 const setText = (id,text) => { $(id).textContent = text; };
+
+function showScenePreview(id) {
+  const image = $('fallback-image');
+  image.src = data.scenes[id].preview || data.scenes[id].thumb;
+  image.alt = '';
+  image.hidden = false;
+}
+
+function cancelPrefetch(nextPath) {
+  clearTimeout(prefetchTimer);
+  if (prefetchPath !== nextPath) prefetchController?.abort();
+}
+
+function prefetchNextScene(id) {
+  cancelPrefetch();
+  const connection = navigator.connection;
+  if (connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType || '')) return;
+  const scene = data.scenes[id];
+  const routeIndex = data.route.indexOf(scene.parent || id);
+  const nextId = data.route[(routeIndex + 1) % data.route.length];
+  const path = panoramaPath(data.scenes[nextId]);
+  if (prefetched.has(path)) return;
+  // Warm only the next stop after the current panorama is ready.
+  prefetchTimer = setTimeout(async () => {
+    if (sceneLoading || currentScene !== id || document.hidden || !ui.audio.paused) return;
+    const controller = new AbortController();
+    prefetchController = controller; prefetchPath = path;
+    try {
+      const response = await fetch(path,{cache:'force-cache',priority:'low',signal:controller.signal});
+      if (response.ok) { await response.blob(); prefetched.add(path); }
+    } catch (_) { /* Prefetch failure must not interrupt a visit. */ }
+    finally { if (prefetchController === controller) { prefetchController = null; prefetchPath = null; } }
+  },1200);
+}
 
 function showTab(name, writeHash = true) {
   name = name === 'history' ? 'history' : 'tour';
@@ -59,13 +97,14 @@ function goToScene(id) {
   ui.audio.pause(); stopRotation();
   if (sceneLoading && viewer && !loadFailed) { pendingScene = id; return; }
   if (id === currentScene && viewer && !loadFailed) return;
+  cancelPrefetch(panoramaPath(data.scenes[id]));
   ui.status.hidden = false;
   ui.status.innerHTML = '<span class="loader"></span>正在走進下一站…';
   if (viewer && !loadFailed) {
     sceneLoading = true;
     viewer.loadScene(id,data.scenes[id].pitch || 0,data.scenes[id].yaw,mobile ? 85 : 95);
   } else {
-    $('fallback-image').src = data.scenes[id].image;
+    $('fallback-image').src = panoramaPath(data.scenes[id]);
     ui.status.hidden = true;
     sceneLoading = false;
     updateScene(id);
@@ -138,7 +177,6 @@ function selectTrack(index,play = false) {
   const playbackRate = ui.audio.playbackRate;
   ui.audio.defaultPlaybackRate = playbackRate;
   ui.audio.src = track.path;
-  ui.audio.load();
   ui.audio.playbackRate = playbackRate;
   setText('audio-title',track.label);
   setText('audio-location',track.floor + ' · ' + (track.floor === '4F' ? '宣道處（獨立語音）' : '文宣處'));
@@ -150,12 +188,14 @@ function selectTrack(index,play = false) {
 }
 async function playAudio() {
   if (!data) return;
+  cancelPrefetch();
+  setText('audio-status','正在準備語音…');
   try { await ui.audio.play(); setText('audio-status','正在播放。您可以一邊聆聽，一邊環視展廳。'); }
   catch (_) { setText('audio-status','播放未能啟動，請再按一次播放；也請確認裝置音量。'); }
 }
 $('play-button').addEventListener('click',() => ui.audio.paused ? playAudio() : ui.audio.pause());
 ui.audio.addEventListener('play',() => { $('play-icon').innerHTML = '<path d="M7 5h4v14H7Zm6 0h4v14h-4Z" fill="currentColor" stroke="none"/>'; $('play-button').setAttribute('aria-label','暫停語音'); });
-ui.audio.addEventListener('pause',() => { $('play-icon').innerHTML = '<path d="m9 5 11 7-11 7Z" fill="currentColor" stroke="none"/>'; $('play-button').setAttribute('aria-label','播放語音'); });
+ui.audio.addEventListener('pause',() => { $('play-icon').innerHTML = '<path d="m9 5 11 7-11 7Z" fill="currentColor" stroke="none"/>'; $('play-button').setAttribute('aria-label','播放語音'); if (ui.audio.currentTime > 0 && !ui.audio.ended) setText('audio-status','已暫停，按下播放即可繼續聆聽。'); });
 ui.audio.addEventListener('loadedmetadata',() => setText('duration',formatTime(ui.audio.duration)));
 ui.audio.addEventListener('timeupdate',() => { setText('current-time',formatTime(ui.audio.currentTime)); if (ui.audio.duration) $('audio-seek').value = ui.audio.currentTime / ui.audio.duration * 100; });
 ui.audio.addEventListener('ended',() => setText('audio-status','這一段故事已播放完畢。您可以選擇下一段語音。'));
@@ -176,7 +216,7 @@ function openPanel(panelId) {
 }
 
 async function init() {
-  const response = await fetch('data.json');
+  const response = await fetch('data.json?v=' + assetVersion);
   if (!response.ok) throw new Error('無法讀取導覽資料');
   data = await response.json();
   // All paths are local; the site does not depend on Google Drive download tokens.
@@ -184,7 +224,7 @@ async function init() {
     const scene = data.scenes[id];
     const button = document.createElement('button');
     button.className = 'scene-card'; button.dataset.scene = id;
-    const image = document.createElement('img'); image.src = scene.thumb; image.alt = scene.title + '實景縮圖'; image.loading = 'lazy';
+    const image = document.createElement('img'); image.src = scene.thumb; image.alt = scene.title + '實景縮圖'; image.loading = 'lazy'; image.decoding = 'async'; image.fetchPriority = 'low';
     const label = document.createElement('span'); label.className = 'scene-card-label';
     const number = document.createElement('span'); number.textContent = String(index+1).padStart(2,'0');
     const title = document.createElement('strong'); title.textContent = scene.title;
@@ -211,20 +251,22 @@ async function init() {
   const startHistory = location.hash === '#history';
   const configScenes = {};
   for (const [id,scene] of Object.entries(data.scenes)) {
-    configScenes[id] = { type:'equirectangular', panorama:mobile?scene.lowImage:scene.image, yaw:scene.yaw, pitch:scene.pitch||0, hfov:mobile?85:95, hotSpots:(scene.links||[]).map(link => ({pitch:link.pitch ?? -17,yaw:link.yaw,cssClass:'tour-hotspot',createTooltipFunc:makeHotspot,createTooltipArgs:{label:data.scenes[link.target].title,target:link.target}})) };
+    configScenes[id] = { type:'equirectangular', panorama:panoramaPath(scene), yaw:scene.yaw, pitch:scene.pitch||0, hfov:mobile?85:95, hotSpots:(scene.links||[]).map(link => ({pitch:link.pitch ?? -17,yaw:link.yaw,cssClass:'tour-hotspot',createTooltipFunc:makeHotspot,createTooltipArgs:{label:data.scenes[link.target].title,target:link.target}})) };
     for (const hotspot of (scene.info || [])) configScenes[id].hotSpots.push({pitch:hotspot.pitch || 0,yaw:hotspot.yaw,cssClass:'tour-hotspot info-hotspot',createTooltipFunc:makeHotspot,createTooltipArgs:{label:hotspot.label,panel:hotspot.panel}});
   }
   selectTrack(0);
+  showScenePreview(currentScene);
   try {
     if (!window.pannellum) throw new Error('全景元件未載入');
-    viewer = pannellum.viewer('panorama',{default:{firstScene:currentScene,autoLoad:true,showControls:false,mouseZoom:true,sceneFadeDuration:reducedMotion?0:650,minHfov:45,maxHfov:115,escapeHTML:true,orientationOnByDefault:false,strings:{loadingLabel:'正在載入全景…',genericWebGLError:'此裝置暫時無法顯示360全景。',noWebGLError:'此瀏覽器不支援360全景。',textureSizeError:'裝置無法載入這張全景，請使用較新的瀏覽器。'}},scenes:configScenes});
+    viewer = pannellum.viewer('panorama',{default:{firstScene:currentScene,autoLoad:true,showControls:false,mouseZoom:true,sceneFadeDuration:reducedMotion?0:200,ignoreGPanoXMP:true,minHfov:45,maxHfov:115,escapeHTML:true,orientationOnByDefault:false,strings:{loadingLabel:'正在載入全景…',genericWebGLError:'此裝置暫時無法顯示360全景。',noWebGLError:'此瀏覽器不支援360全景。',textureSizeError:'裝置無法載入這張全景，請使用較新的瀏覽器。'}},scenes:configScenes});
     viewer.on('load',() => {
       ui.status.hidden = true; loadFailed = false; sceneLoading = false; $('fallback-image').hidden = true;
       const next = pendingScene; pendingScene = null;
       if (next && next !== currentScene) goToScene(next);
+      else prefetchNextScene(currentScene);
     });
-    viewer.on('scenechange',id => { ui.audio.pause(); stopRotation(); updateScene(id); });
-    viewer.on('error',message => { loadFailed = true; sceneLoading = false; pendingScene = null; $('fallback-image').src = data.scenes[currentScene].image; $('fallback-image').hidden = false; ui.status.hidden = false; ui.status.textContent = '此裝置無法顯示360全景，目前顯示照片。展區選單及語音仍可使用。'; ui.status.style.whiteSpace = 'normal'; ui.status.style.width = 'min(330px,80%)'; console.warn(message); });
+    viewer.on('scenechange',id => { ui.audio.pause(); stopRotation(); updateScene(id); showScenePreview(id); });
+    viewer.on('error',message => { loadFailed = true; sceneLoading = false; pendingScene = null; $('fallback-image').src = panoramaPath(data.scenes[currentScene]); $('fallback-image').alt = '展廳全景照片'; $('fallback-image').hidden = false; ui.status.hidden = false; ui.status.textContent = '此裝置無法顯示360全景，目前顯示照片。展區選單及語音仍可使用。'; ui.status.style.whiteSpace = 'normal'; ui.status.style.width = 'min(330px,80%)'; console.warn(message); });
     viewer.on('mousedown',() => { stopRotation(); $('drag-tip').style.opacity = '.65'; });
     viewer.on('touchstart',stopRotation);
   } catch (error) { loadFailed = true; $('fallback-image').src = data.scenes[currentScene].image; $('fallback-image').hidden = false; ui.status.textContent = '全景暫時無法啟動，目前顯示照片。請以展區選單繼續參觀。'; console.error(error); }

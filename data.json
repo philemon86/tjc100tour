@@ -19,9 +19,9 @@
       "description": "沿著展廳中央轉動視角，看看教牧工作的介紹、教材與展品。另一側是文宣展區；同一個空間，呈現不同的事工記憶。",
       "department": "教牧處",
       "location": "7F · 教牧處",
-      "image": "assets/pano-01.jpg",
-      "lowImage": "assets/pano-01-low.jpg",
-      "thumb": "assets/thumb-01.jpg",
+      "image": "assets/pano-01.webp",
+      "lowImage": "assets/pano-01-low.webp",
+      "thumb": "assets/thumb-01.webp",
       "yaw": 90,
       "pitch": -3,
       "links": [
@@ -36,7 +36,8 @@
           "pitch": -18
         }
       ],
-      "panels": []
+      "panels": [],
+      "preview": "assets/pano-01-preview.webp"
     },
     "p02": {
       "title": "文宣大事記",
@@ -44,9 +45,9 @@
       "description": "文宣大事記整理刊物與網路的發展歷程。從早年的《聖靈報》到《聖靈》月刊，沿著年代，看看不同時期的出版記憶。",
       "department": "文宣處",
       "location": "7F · 文宣處",
-      "image": "assets/pano-02.jpg",
-      "lowImage": "assets/pano-02-low.jpg",
-      "thumb": "assets/thumb-02.jpg",
+      "image": "assets/pano-02.webp",
+      "lowImage": "assets/pano-02-low.webp",
+      "thumb": "assets/thumb-02.webp",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -80,7 +81,8 @@
           "yaw": -90,
           "pitch": 3
         }
-      ]
+      ],
+      "preview": "assets/pano-02-preview.webp"
     },
     "p03": {
       "title": "文宣大事記・另一視角",
@@ -88,9 +90,9 @@
       "description": "文宣大事記整理刊物與網路的發展歷程。從早年的《聖靈報》到《聖靈》月刊，沿著年代，看看不同時期的出版記憶。",
       "department": "文宣處",
       "location": "7F · 文宣處",
-      "image": "assets/pano-03.jpg",
-      "lowImage": "assets/pano-03-low.jpg",
-      "thumb": "assets/thumb-03.jpg",
+      "image": "assets/pano-03.webp",
+      "lowImage": "assets/pano-03-low.webp",
+      "thumb": "assets/thumb-03.webp",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -124,7 +126,8 @@
           "yaw": -90,
           "pitch": 3
         }
-      ]
+      ],
+      "preview": "assets/pano-03-preview.webp"
     },
     "p04": {
       "title": "文宣展品與互動區",
@@ -132,9 +135,9 @@
       "description": "展區陳列文宣刊物、印章與鋼印，並設有留言和打卡區。轉動視角，看看桌上的史料與展區內的刊物掛軸。",
       "department": "文宣處",
       "location": "7F · 文宣處",
-      "image": "assets/pano-04.jpg",
-      "lowImage": "assets/pano-04-low.jpg",
-      "thumb": "assets/thumb-04.jpg",
+      "image": "assets/pano-04.webp",
+      "lowImage": "assets/pano-04-low.webp",
+      "thumb": "assets/thumb-04.webp",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -160,7 +163,8 @@
         "wen-xuan-scroll-6",
         "wen-xuan-scroll-7"
       ],
-      "alternate": "p05"
+      "alternate": "p05",
+      "preview": "assets/pano-04-preview.webp"
     },
     "p05": {
       "title": "文宣展品與互動區・另一視角",
@@ -168,9 +172,9 @@
       "description": "展區陳列文宣刊物、印章與鋼印，並設有留言和打卡區。轉動視角，看看桌上的史料與展區內的刊物掛軸。",
       "department": "文宣處",
       "location": "7F · 文宣處",
-      "image": "assets/pano-05.jpg",
-      "lowImage": "assets/pano-05-low.jpg",
-      "thumb": "assets/thumb-05.jpg",
+      "image": "assets/pano-05.webp",
+      "lowImage": "assets/pano-05-low.webp",
+      "thumb": "assets/thumb-05.webp",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -196,7 +200,8 @@
         "wen-xuan-scroll-6",
         "wen-xuan-scroll-7"
       ],
-      "parent": "p04"
+      "parent": "p04",
+      "preview": "assets/pano-05-preview.webp"
     },
     "p06": {
       "title": "文宣處展區",
@@ -204,9 +209,9 @@
       "description": "從刊物演進掛軸、文宣大事記到聖靈月刊，看見一代代同工透過文字服事的足跡。也可以打開完整展板，慢慢閱讀。",
       "department": "文宣處",
       "location": "7F · 文宣處",
-      "image": "assets/pano-06.jpg",
-      "lowImage": "assets/pano-06-low.jpg",
-      "thumb": "assets/thumb-06.jpg",
+      "image": "assets/pano-06.webp",
+      "lowImage": "assets/pano-06-low.webp",
+      "thumb": "assets/thumb-06.webp",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -239,7 +244,8 @@
           "yaw": -50,
           "pitch": 2
         }
-      ]
+      ],
+      "preview": "assets/pano-06-preview.webp"
     },
     "p07": {
       "title": "教牧重要事記",
@@ -247,9 +253,9 @@
       "description": "透過教牧重要事記與事工介紹，認識宗教教育、教材編寫與教牧工作的歷程。沿著展板，繼續探索聖樂事工。",
       "department": "教牧處",
       "location": "7F · 教牧處",
-      "image": "assets/pano-07.jpg",
-      "lowImage": "assets/pano-07-low.jpg",
-      "thumb": "assets/thumb-07.jpg",
+      "image": "assets/pano-07.webp",
+      "lowImage": "assets/pano-07-low.webp",
+      "thumb": "assets/thumb-07.webp",
       "yaw": -100,
       "pitch": -3,
       "links": [
@@ -265,7 +271,8 @@
         }
       ],
       "panels": [],
-      "alternate": "p08"
+      "alternate": "p08",
+      "preview": "assets/pano-07-preview.webp"
     },
     "p08": {
       "title": "教牧重要事記・另一視角",
@@ -273,9 +280,9 @@
       "description": "透過教牧重要事記與事工介紹，認識宗教教育、教材編寫與教牧工作的歷程。沿著展板，繼續探索聖樂事工。",
       "department": "教牧處",
       "location": "7F · 教牧處",
-      "image": "assets/pano-08.jpg",
-      "lowImage": "assets/pano-08-low.jpg",
-      "thumb": "assets/thumb-08.jpg",
+      "image": "assets/pano-08.webp",
+      "lowImage": "assets/pano-08-low.webp",
+      "thumb": "assets/thumb-08.webp",
       "yaw": -100,
       "pitch": -3,
       "links": [
@@ -291,7 +298,8 @@
         }
       ],
       "panels": [],
-      "parent": "p07"
+      "parent": "p07",
+      "preview": "assets/pano-08-preview.webp"
     },
     "p09": {
       "title": "教牧教材與出版品",
@@ -299,9 +307,9 @@
       "description": "教材、手冊與出版品，記錄教牧與宗教教育事工的累積。順著窗邊走道，可以繼續閱讀教牧處的重要事記。",
       "department": "教牧處",
       "location": "7F · 教牧處",
-      "image": "assets/pano-09.jpg",
-      "lowImage": "assets/pano-09-low.jpg",
-      "thumb": "assets/thumb-09.jpg",
+      "image": "assets/pano-09.webp",
+      "lowImage": "assets/pano-09-low.webp",
+      "thumb": "assets/thumb-09.webp",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -317,7 +325,8 @@
         }
       ],
       "panels": [],
-      "alternate": "p10"
+      "alternate": "p10",
+      "preview": "assets/pano-09-preview.webp"
     },
     "p10": {
       "title": "教牧教材與出版品・另一視角",
@@ -325,9 +334,9 @@
       "description": "教材、手冊與出版品，記錄教牧與宗教教育事工的累積。順著窗邊走道，可以繼續閱讀教牧處的重要事記。",
       "department": "教牧處",
       "location": "7F · 教牧處",
-      "image": "assets/pano-10.jpg",
-      "lowImage": "assets/pano-10-low.jpg",
-      "thumb": "assets/thumb-10.jpg",
+      "image": "assets/pano-10.webp",
+      "lowImage": "assets/pano-10-low.webp",
+      "thumb": "assets/thumb-10.webp",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -343,7 +352,8 @@
         }
       ],
       "panels": [],
-      "parent": "p09"
+      "parent": "p09",
+      "preview": "assets/pano-10-preview.webp"
     },
     "p11": {
       "title": "聖樂事工展板",
@@ -351,9 +361,9 @@
       "description": "聖樂事工展板呈現近年的工作推廣、活動與教會發展資訊。慢慢環視，也看看窗邊陳列的教材與書籍。",
       "department": "教牧處",
       "location": "7F · 教牧處",
-      "image": "assets/pano-11.jpg",
-      "lowImage": "assets/pano-11-low.jpg",
-      "thumb": "assets/thumb-11.jpg",
+      "image": "assets/pano-11.webp",
+      "lowImage": "assets/pano-11-low.webp",
+      "thumb": "assets/thumb-11.webp",
       "yaw": 90,
       "pitch": -3,
       "links": [
@@ -363,7 +373,8 @@
           "pitch": -20
         }
       ],
-      "panels": []
+      "panels": [],
+      "preview": "assets/pano-11-preview.webp"
     },
     "p12": {
       "title": "神學院時光迴廊",
@@ -371,9 +382,9 @@
       "description": "沿著神學院時光迴廊，看看歷史相簿與影像；一旁的書架，也記錄著教會出版與教育事工的累積。",
       "department": "神學院",
       "location": "7F · 神學院",
-      "image": "assets/pano-12.jpg",
-      "lowImage": "assets/pano-12-low.jpg",
-      "thumb": "assets/thumb-12.jpg",
+      "image": "assets/pano-12.webp",
+      "lowImage": "assets/pano-12-low.webp",
+      "thumb": "assets/thumb-12.webp",
       "yaw": 100,
       "pitch": -3,
       "links": [
@@ -388,7 +399,8 @@
           "pitch": -15
         }
       ],
-      "panels": []
+      "panels": [],
+      "preview": "assets/pano-12-preview.webp"
     },
     "p13": {
       "title": "七樓入口",
@@ -396,9 +408,9 @@
       "description": "走進七樓閱覽室，沿著文宣、教牧與神學院的展覽，認識文字、教育與信仰傳承的不同面貌。",
       "department": "入口",
       "location": "7F · 七樓展廳",
-      "image": "assets/pano-13.jpg",
-      "lowImage": "assets/pano-13-low.jpg",
-      "thumb": "assets/thumb-13.jpg",
+      "image": "assets/pano-13.webp",
+      "lowImage": "assets/pano-13-low.webp",
+      "thumb": "assets/thumb-13.webp",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -408,7 +420,8 @@
           "pitch": -16
         }
       ],
-      "panels": []
+      "panels": [],
+      "preview": "assets/pano-13-preview.webp"
     },
     "p14": {
       "title": "展廳迎賓區",
@@ -416,9 +429,9 @@
       "description": "玻璃門內，是七樓展廳的開闊空間。從入口出發，先看看神學院的歷史影像，再走進文宣與教牧展區。",
       "department": "入口",
       "location": "7F · 七樓展廳",
-      "image": "assets/pano-14.jpg",
-      "lowImage": "assets/pano-14-low.jpg",
-      "thumb": "assets/thumb-14.jpg",
+      "image": "assets/pano-14.webp",
+      "lowImage": "assets/pano-14-low.webp",
+      "thumb": "assets/thumb-14.webp",
       "yaw": -30,
       "pitch": -3,
       "links": [
@@ -433,7 +446,8 @@
           "pitch": -19
         }
       ],
-      "panels": []
+      "panels": [],
+      "preview": "assets/pano-14-preview.webp"
     }
   },
   "tracks": [

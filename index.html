@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="vendor/pannellum.css">
   <link rel="stylesheet" href="style.css">
   <script src="vendor/pannellum.js" defer></script>
-  <script src="app.js" defer></script>
+  <script src="app.js?v=20261010-speed1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">跳至導覽內容</a>
@@ -24,7 +24,7 @@
       <div class="tour-layout">
         <div class="viewer-shell" id="viewer-shell">
           <div id="panorama" tabindex="0" aria-label="360度全景，拖曳或使用方向鍵轉動視角"></div>
-          <img id="fallback-image" class="fallback-image" alt="展廳全景照片" hidden>
+          <img id="fallback-image" class="fallback-image" src="assets/pano-13-preview.webp" fetchpriority="high" alt="">
           <div class="viewer-top"><span class="live-badge"><span></span>360° 實景導覽</span><button class="glass-button" id="route-button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6ZM9 3v15m6-12v15"/></svg>導覽路線</button></div>
           <div id="viewer-status" class="loading-message" role="status"><span class="loader"></span>正在走進展廳…</div>
           <div class="scene-caption"><span class="scene-location" id="scene-location">7F · 七樓展廳</span><h2 id="scene-title">七樓展廳</h2><p id="scene-subtitle">拖曳畫面，看看身邊的展覽</p></div>
@@ -42,7 +42,7 @@
           <div class="audio-section"><div class="audio-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-3a8 8 0 0 1 16 0v3M4 12h3v8H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2Zm16 0h-3v8h3a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Z"/></svg><h3>聽一段展區故事</h3></div>
             <button class="track-selector" id="track-selector"><span><small id="audio-location">7F · 文宣處</small><strong id="audio-title">文宣處語音導覽</strong></span><span aria-hidden="true">⌄</span></button>
             <div class="player"><button class="play-button" id="play-button" aria-label="播放語音"><svg id="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7Z" fill="currentColor" stroke="none"/></svg></button><div class="player-progress"><label class="sr-only" for="audio-seek">語音播放位置</label><input id="audio-seek" type="range" min="0" max="100" value="0" step="0.1"><div class="time"><span id="current-time">00:00</span><span id="duration">--:--</span></div></div><button class="speed-button" id="speed-button" aria-label="播放速度，1倍">1×</button></div>
-            <p class="audio-status" id="audio-status" role="status">點擊播放，跟著聲音認識展覽。</p><audio id="audio" preload="metadata"></audio>
+            <p class="audio-status" id="audio-status" role="status">點擊播放，跟著聲音認識展覽。</p><audio id="audio" preload="none"></audio>
           </div>
           <div class="story-actions"><button id="panel-button" hidden>閱讀完整展板 ↗</button><button id="alternate-button" hidden>換個角度看 ↻</button></div>
           <button class="next-station" id="next-station"><span><small>沿著展覽繼續走</small><strong id="next-title">下一個展區</strong></span><span class="arrow" aria-hidden="true">↗</span></button>
