@@ -5,7 +5,7 @@ let data, viewer, currentScene, currentTrack, rotating = false, loadFailed = fal
 let sceneLoading = true, pendingScene = null;
 let prefetchTimer = null, prefetchController = null, prefetchPath = null;
 const prefetched = new Set();
-const assetVersion = '20261010-quiet1';
+const assetVersion = '20261010-positions1';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile = window.matchMedia('(max-width: 720px)').matches;
 const panoramaPath = (scene) => mobile || navigator.connection?.saveData ? scene.lowImage : scene.image;
@@ -149,6 +149,8 @@ function updateScene(id) {
   if (alternate) $('alternate-button').onclick = () => goToScene(alternate);
   const panels = scene.panels || [];
   $('panel-button').hidden = !panels.length;
+  const primaryPanel = data.panels.find(panel => panel.id === panels[0]);
+  if (primaryPanel) $('panel-button').textContent = '閱讀' + (primaryPanel.shortTitle || primaryPanel.title) + ' ↗';
   $('panel-button').onclick = () => openPanel(panels[0]);
   setText('audio-status',scene.department === '文宣處' ? '可選聽文宣處各段語音；點擊播放開始聆聽。' : '此處尚無專屬語音，可另選聽文宣處或宣道處。');
   history.replaceState(null,'','#tour/' + id);
@@ -220,6 +222,15 @@ $('speed-button').addEventListener('click',() => { const rates = [1,1.25,1.5,.75
 function openPanel(panelId) {
   const panel = data.panels.find(p => p.id === panelId);
   if (!panel) return;
+  // Keep the image menu local to the exhibits visible at this stop.
+  const visibleIds = new Set([...(data.scenes[currentScene]?.panels || []),panelId]);
+  const select = $('panel-select');
+  select.replaceChildren();
+  Array.from(visibleIds,id => data.panels.find(item => item.id === id)).filter(Boolean).forEach(item => {
+    const option = document.createElement('option');
+    option.value = item.id; option.textContent = item.title;
+    select.append(option);
+  });
   setText('panel-title',panel.title);
   $('panel-image').src = panel.path;
   $('panel-image').alt = panel.title + '完整展板';
@@ -258,7 +269,6 @@ async function init() {
     button.addEventListener('click',() => { selectTrack(index,true); $('audio-dialog').close(); }); $('audio-list').append(button);
   });
   data.history.forEach(item => { const entry = document.createElement('article'); entry.className = 'timeline-item'; const year = document.createElement('span'); year.className = 'timeline-year'; year.textContent = item.year; const text = document.createElement('div'); const h = document.createElement('h2'); h.textContent = item.title; text.append(h); if (item.description) { const p = document.createElement('p'); p.textContent = item.description; text.append(p); } entry.append(year,text); $('timeline').append(entry); });
-  data.panels.forEach(panel => { const option = document.createElement('option'); option.value = panel.id; option.textContent = panel.title; $('panel-select').append(option); });
   $('panel-select').addEventListener('change',event => openPanel(event.target.value));
   const hashId = location.hash.startsWith('#tour/') ? decodeURIComponent(location.hash.slice(6)) : '';
   currentScene = data.scenes[hashId] ? hashId : data.firstScene;

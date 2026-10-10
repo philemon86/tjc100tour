@@ -42,7 +42,7 @@
     "p02": {
       "title": "文宣大事記",
       "storyTitle": "在文字裡，留下足跡",
-      "description": "文宣大事記整理刊物與網路的發展歷程。從早年的《聖靈報》到《聖靈》月刊，沿著年代，看看不同時期的出版記憶。",
+      "description": "文宣大事記整理刊物與網路的發展歷程。點擊展板與上方各張掛軸的閱讀點，即可查看對應的清晰原圖。",
       "department": "文宣處",
       "location": "7F · 文宣處",
       "image": "assets/pano-02.webp",
@@ -64,13 +64,8 @@
       ],
       "panels": [
         "wen-xuan-timeline",
-        "holy-spirit-magazine",
         "wen-xuan-scroll-1",
         "wen-xuan-scroll-2",
-        "wen-xuan-scroll-3",
-        "wen-xuan-scroll-4",
-        "wen-xuan-scroll-5",
-        "wen-xuan-scroll-6",
         "wen-xuan-scroll-7"
       ],
       "alternate": "p03",
@@ -78,8 +73,26 @@
         {
           "label": "閱讀文宣大事記",
           "panel": "wen-xuan-timeline",
-          "yaw": -90,
-          "pitch": 3
+          "yaw": -97,
+          "pitch": -3
+        },
+        {
+          "label": "閱讀掛軸1",
+          "panel": "wen-xuan-scroll-1",
+          "yaw": -20.5,
+          "pitch": 29
+        },
+        {
+          "label": "閱讀掛軸2",
+          "panel": "wen-xuan-scroll-2",
+          "yaw": 36,
+          "pitch": 27
+        },
+        {
+          "label": "閱讀掛軸7",
+          "panel": "wen-xuan-scroll-7",
+          "yaw": -155,
+          "pitch": 31
         }
       ],
       "preview": "assets/pano-02-preview.webp"
@@ -87,7 +100,7 @@
     "p03": {
       "title": "文宣大事記・另一視角",
       "storyTitle": "在文字裡，留下足跡",
-      "description": "文宣大事記整理刊物與網路的發展歷程。從早年的《聖靈報》到《聖靈》月刊，沿著年代，看看不同時期的出版記憶。",
+      "description": "文宣大事記整理刊物與網路的發展歷程。點擊展板與上方各張掛軸的閱讀點，即可查看對應的清晰原圖。",
       "department": "文宣處",
       "location": "7F · 文宣處",
       "image": "assets/pano-03.webp",
@@ -109,13 +122,8 @@
       ],
       "panels": [
         "wen-xuan-timeline",
-        "holy-spirit-magazine",
         "wen-xuan-scroll-1",
         "wen-xuan-scroll-2",
-        "wen-xuan-scroll-3",
-        "wen-xuan-scroll-4",
-        "wen-xuan-scroll-5",
-        "wen-xuan-scroll-6",
         "wen-xuan-scroll-7"
       ],
       "parent": "p02",
@@ -123,8 +131,26 @@
         {
           "label": "閱讀文宣大事記",
           "panel": "wen-xuan-timeline",
-          "yaw": -90,
-          "pitch": 3
+          "yaw": -97,
+          "pitch": -3
+        },
+        {
+          "label": "閱讀掛軸1",
+          "panel": "wen-xuan-scroll-1",
+          "yaw": -20.5,
+          "pitch": 29
+        },
+        {
+          "label": "閱讀掛軸2",
+          "panel": "wen-xuan-scroll-2",
+          "yaw": 36,
+          "pitch": 27
+        },
+        {
+          "label": "閱讀掛軸7",
+          "panel": "wen-xuan-scroll-7",
+          "yaw": -155,
+          "pitch": 31
         }
       ],
       "preview": "assets/pano-03-preview.webp"
@@ -132,7 +158,7 @@
     "p04": {
       "title": "文宣展品與互動區",
       "storyTitle": "把一段記憶，帶回心裡",
-      "description": "展區陳列文宣刊物、印章與鋼印，並設有留言和打卡區。轉動視角，看看桌上的史料與展區內的刊物掛軸。",
+      "description": "桌前是「認識聖靈月刊」展板，上方懸掛不同年代的刊物掛軸。點擊各展品上的閱讀點，可打開該張清晰原圖；也可以轉動視角看看刊物、印章、鋼印與留言區。",
       "department": "文宣處",
       "location": "7F · 文宣處",
       "image": "assets/pano-04.webp",
@@ -143,8 +169,8 @@
       "links": [
         {
           "target": "p02",
-          "yaw": -80,
-          "pitch": -20
+          "yaw": 178,
+          "pitch": -15
         },
         {
           "target": "p01",
@@ -153,23 +179,51 @@
         }
       ],
       "panels": [
-        "wen-xuan-timeline",
         "holy-spirit-magazine",
-        "wen-xuan-scroll-1",
-        "wen-xuan-scroll-2",
         "wen-xuan-scroll-3",
         "wen-xuan-scroll-4",
         "wen-xuan-scroll-5",
-        "wen-xuan-scroll-6",
-        "wen-xuan-scroll-7"
+        "wen-xuan-scroll-6"
       ],
       "alternate": "p05",
-      "preview": "assets/pano-04-preview.webp"
+      "preview": "assets/pano-04-preview.webp",
+      "info": [
+        {
+          "label": "認識聖靈月刊",
+          "panel": "holy-spirit-magazine",
+          "yaw": -89,
+          "pitch": -3
+        },
+        {
+          "label": "閱讀掛軸3",
+          "panel": "wen-xuan-scroll-3",
+          "yaw": -138.5,
+          "pitch": 32
+        },
+        {
+          "label": "閱讀掛軸4",
+          "panel": "wen-xuan-scroll-4",
+          "yaw": 138,
+          "pitch": 29.5
+        },
+        {
+          "label": "閱讀掛軸5",
+          "panel": "wen-xuan-scroll-5",
+          "yaw": -19,
+          "pitch": 27
+        },
+        {
+          "label": "閱讀掛軸6",
+          "panel": "wen-xuan-scroll-6",
+          "yaw": 34,
+          "pitch": 27
+        }
+      ]
     },
     "p05": {
       "title": "文宣展品與互動區・另一視角",
       "storyTitle": "把一段記憶，帶回心裡",
-      "description": "展區陳列文宣刊物、印章與鋼印，並設有留言和打卡區。轉動視角，看看桌上的史料與展區內的刊物掛軸。",
+      "description": "桌前是「認識聖靈月刊」展板，上方懸掛不同年代的刊物掛軸。點擊各展品上的閱讀點，可打開該張清晰原圖；也可以轉動視角看看刊物、印章、鋼印與留言區。",
       "department": "文宣處",
       "location": "7F · 文宣處",
       "image": "assets/pano-05.webp",
@@ -180,8 +234,8 @@
       "links": [
         {
           "target": "p02",
-          "yaw": -80,
-          "pitch": -20
+          "yaw": 178,
+          "pitch": -15
         },
         {
           "target": "p01",
@@ -190,18 +244,46 @@
         }
       ],
       "panels": [
-        "wen-xuan-timeline",
         "holy-spirit-magazine",
-        "wen-xuan-scroll-1",
-        "wen-xuan-scroll-2",
         "wen-xuan-scroll-3",
         "wen-xuan-scroll-4",
         "wen-xuan-scroll-5",
-        "wen-xuan-scroll-6",
-        "wen-xuan-scroll-7"
+        "wen-xuan-scroll-6"
       ],
       "parent": "p04",
-      "preview": "assets/pano-05-preview.webp"
+      "preview": "assets/pano-05-preview.webp",
+      "info": [
+        {
+          "label": "認識聖靈月刊",
+          "panel": "holy-spirit-magazine",
+          "yaw": -89,
+          "pitch": -3
+        },
+        {
+          "label": "閱讀掛軸3",
+          "panel": "wen-xuan-scroll-3",
+          "yaw": -138.5,
+          "pitch": 32
+        },
+        {
+          "label": "閱讀掛軸4",
+          "panel": "wen-xuan-scroll-4",
+          "yaw": 138,
+          "pitch": 29.5
+        },
+        {
+          "label": "閱讀掛軸5",
+          "panel": "wen-xuan-scroll-5",
+          "yaw": -19,
+          "pitch": 27
+        },
+        {
+          "label": "閱讀掛軸6",
+          "panel": "wen-xuan-scroll-6",
+          "yaw": 34,
+          "pitch": 27
+        }
+      ]
     },
     "p06": {
       "title": "文宣處展區",
@@ -227,22 +309,21 @@
         }
       ],
       "panels": [
-        "wen-xuan-timeline",
         "holy-spirit-magazine",
-        "wen-xuan-scroll-1",
-        "wen-xuan-scroll-2",
-        "wen-xuan-scroll-3",
-        "wen-xuan-scroll-4",
-        "wen-xuan-scroll-5",
-        "wen-xuan-scroll-6",
-        "wen-xuan-scroll-7"
+        "wen-xuan-timeline"
       ],
       "info": [
         {
+          "label": "閱讀文宣大事記",
+          "panel": "wen-xuan-timeline",
+          "yaw": -125,
+          "pitch": -2
+        },
+        {
           "label": "認識聖靈月刊",
           "panel": "holy-spirit-magazine",
-          "yaw": -50,
-          "pitch": 2
+          "yaw": -70,
+          "pitch": -2
         }
       ],
       "preview": "assets/pano-06-preview.webp"
@@ -390,8 +471,8 @@
       "links": [
         {
           "target": "p14",
-          "yaw": 25,
-          "pitch": -20
+          "yaw": 98,
+          "pitch": -13
         },
         {
           "target": "p06",
@@ -554,59 +635,61 @@
       "path": "assets/panels/holy-spirit-magazine.jpg",
       "sourceId": "1Xh_PMJMarzLaaelYpGqiv48snA_jxPfa",
       "sourceFilename": "96dpi_認識聖靈月刊.jpg",
-      "id": "holy-spirit-magazine"
+      "id": "holy-spirit-magazine",
+      "shortTitle": "聖靈月刊展板"
     },
     {
       "title": "臺灣真耶穌教會文宣大事記",
       "path": "assets/panels/wen-xuan-timeline.jpg",
       "sourceId": "1IdTQT2QNYF8jqgmICdgNwIN_RQyQc-5H",
       "sourceFilename": "96dpi_文宣大事記.jpg",
-      "id": "wen-xuan-timeline"
+      "id": "wen-xuan-timeline",
+      "shortTitle": "文宣大事記"
     },
     {
-      "title": "刊物演進歷程掛軸 3",
+      "title": "刊物掛軸3｜1935–1941｜福音刊物",
       "path": "assets/panels/wen-xuan-scroll-3.jpg",
       "sourceId": "1LcHlMcbd0lvGnfQMesLeLWrKvkNaj1KZ",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_3.jpg",
       "id": "wen-xuan-scroll-3"
     },
     {
-      "title": "刊物演進歷程掛軸 5",
+      "title": "刊物掛軸5｜1960–2000｜宗教教育",
       "path": "assets/panels/wen-xuan-scroll-5.jpg",
       "sourceId": "1PZAiKq8YnSMk6pff2qgSSOXRE4zxF2wT",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_5.jpg",
       "id": "wen-xuan-scroll-5"
     },
     {
-      "title": "刊物演進歷程掛軸 6",
+      "title": "刊物掛軸6｜1965–2001｜青年刊物",
       "path": "assets/panels/wen-xuan-scroll-6.jpg",
       "sourceId": "1Hp7XaLqW3lhBs4n62B8VCQeyDSxNH9I8",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_6.jpg",
       "id": "wen-xuan-scroll-6"
     },
     {
-      "title": "刊物演進歷程掛軸 4",
+      "title": "刊物掛軸4｜1951–1977｜聖靈刊物",
       "path": "assets/panels/wen-xuan-scroll-4.jpg",
       "sourceId": "1_SM42TDaUXklJFxzXMwVht1Q3J0BOfr_",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_4.jpg",
       "id": "wen-xuan-scroll-4"
     },
     {
-      "title": "刊物演進歷程掛軸 2",
+      "title": "刊物掛軸2｜1926–1932｜聖靈報",
       "path": "assets/panels/wen-xuan-scroll-2.jpg",
       "sourceId": "1YaRDjN0F8-GedLO7fdbtMrivsSXkKaE2",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_2.jpg",
       "id": "wen-xuan-scroll-2"
     },
     {
-      "title": "刊物演進歷程掛軸 1",
+      "title": "刊物掛軸1｜1919–1924｜初期報刊",
       "path": "assets/panels/wen-xuan-scroll-1.jpg",
       "sourceId": "1Tyl6O5nXrUIYd1t2AEkdzq22YYgg2T0_",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_1.jpg",
       "id": "wen-xuan-scroll-1"
     },
     {
-      "title": "刊物演進歷程掛軸 7",
+      "title": "刊物掛軸7｜跨越100｜文宣序言",
       "path": "assets/panels/wen-xuan-scroll-7.jpg",
       "sourceId": "1Kr_gxbGrqT5K7va6vg98AeH4fX35mJ07",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_7.jpg",
