@@ -4,7 +4,7 @@
 
 ## 線上參觀
 
-GitHub Pages：https://philemon86.github.io/tjc-centennial-tour/
+GitHub Pages：https://philemon86.github.io/tjc100tour/
 
 手機可滑動全景及雙指縮放；電腦可拖曳、滾輪縮放或使用方向鍵。點擊全景移動點、導覽路線或縮圖前往其他展區。
 
