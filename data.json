@@ -1,0 +1,638 @@
+{
+  "firstScene": "p13",
+  "route": [
+    "p13",
+    "p14",
+    "p12",
+    "p06",
+    "p02",
+    "p04",
+    "p01",
+    "p09",
+    "p07",
+    "p11"
+  ],
+  "scenes": {
+    "p01": {
+      "title": "展廳中央",
+      "storyTitle": "從展覽，認識教牧",
+      "description": "沿著展廳中央轉動視角，看看教牧工作的介紹、教材與展品。另一側是文宣展區；同一個空間，呈現不同的事工記憶。",
+      "department": "教牧處",
+      "location": "7F · 教牧處",
+      "image": "assets/pano-01.jpg",
+      "lowImage": "assets/pano-01-low.jpg",
+      "thumb": "assets/thumb-01.jpg",
+      "yaw": 90,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p04",
+          "yaw": -20,
+          "pitch": -18
+        },
+        {
+          "target": "p09",
+          "yaw": 160,
+          "pitch": -18
+        }
+      ],
+      "panels": []
+    },
+    "p02": {
+      "title": "文宣大事記",
+      "storyTitle": "在文字裡，留下足跡",
+      "description": "文宣大事記整理刊物與網路的發展歷程。從早年的《聖靈報》到《聖靈》月刊，沿著年代，看看不同時期的出版記憶。",
+      "department": "文宣處",
+      "location": "7F · 文宣處",
+      "image": "assets/pano-02.jpg",
+      "lowImage": "assets/pano-02-low.jpg",
+      "thumb": "assets/thumb-02.jpg",
+      "yaw": -90,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p06",
+          "yaw": 155,
+          "pitch": -20
+        },
+        {
+          "target": "p04",
+          "yaw": 0,
+          "pitch": -18
+        }
+      ],
+      "panels": [
+        "wen-xuan-timeline",
+        "holy-spirit-magazine",
+        "wen-xuan-scroll-1",
+        "wen-xuan-scroll-2",
+        "wen-xuan-scroll-3",
+        "wen-xuan-scroll-4",
+        "wen-xuan-scroll-5",
+        "wen-xuan-scroll-6",
+        "wen-xuan-scroll-7"
+      ],
+      "alternate": "p03",
+      "info": [
+        {
+          "label": "閱讀文宣大事記",
+          "panel": "wen-xuan-timeline",
+          "yaw": -90,
+          "pitch": 3
+        }
+      ]
+    },
+    "p03": {
+      "title": "文宣大事記・另一視角",
+      "storyTitle": "在文字裡，留下足跡",
+      "description": "文宣大事記整理刊物與網路的發展歷程。從早年的《聖靈報》到《聖靈》月刊，沿著年代，看看不同時期的出版記憶。",
+      "department": "文宣處",
+      "location": "7F · 文宣處",
+      "image": "assets/pano-03.jpg",
+      "lowImage": "assets/pano-03-low.jpg",
+      "thumb": "assets/thumb-03.jpg",
+      "yaw": -90,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p06",
+          "yaw": 155,
+          "pitch": -20
+        },
+        {
+          "target": "p04",
+          "yaw": 0,
+          "pitch": -18
+        }
+      ],
+      "panels": [
+        "wen-xuan-timeline",
+        "holy-spirit-magazine",
+        "wen-xuan-scroll-1",
+        "wen-xuan-scroll-2",
+        "wen-xuan-scroll-3",
+        "wen-xuan-scroll-4",
+        "wen-xuan-scroll-5",
+        "wen-xuan-scroll-6",
+        "wen-xuan-scroll-7"
+      ],
+      "parent": "p02",
+      "info": [
+        {
+          "label": "閱讀文宣大事記",
+          "panel": "wen-xuan-timeline",
+          "yaw": -90,
+          "pitch": 3
+        }
+      ]
+    },
+    "p04": {
+      "title": "文宣展品與互動區",
+      "storyTitle": "把一段記憶，帶回心裡",
+      "description": "展區陳列文宣刊物、印章與鋼印，並設有留言和打卡區。轉動視角，看看桌上的史料與展區內的刊物掛軸。",
+      "department": "文宣處",
+      "location": "7F · 文宣處",
+      "image": "assets/pano-04.jpg",
+      "lowImage": "assets/pano-04-low.jpg",
+      "thumb": "assets/thumb-04.jpg",
+      "yaw": -90,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p02",
+          "yaw": -80,
+          "pitch": -20
+        },
+        {
+          "target": "p01",
+          "yaw": 125,
+          "pitch": -20
+        }
+      ],
+      "panels": [
+        "wen-xuan-timeline",
+        "holy-spirit-magazine",
+        "wen-xuan-scroll-1",
+        "wen-xuan-scroll-2",
+        "wen-xuan-scroll-3",
+        "wen-xuan-scroll-4",
+        "wen-xuan-scroll-5",
+        "wen-xuan-scroll-6",
+        "wen-xuan-scroll-7"
+      ],
+      "alternate": "p05"
+    },
+    "p05": {
+      "title": "文宣展品與互動區・另一視角",
+      "storyTitle": "把一段記憶，帶回心裡",
+      "description": "展區陳列文宣刊物、印章與鋼印，並設有留言和打卡區。轉動視角，看看桌上的史料與展區內的刊物掛軸。",
+      "department": "文宣處",
+      "location": "7F · 文宣處",
+      "image": "assets/pano-05.jpg",
+      "lowImage": "assets/pano-05-low.jpg",
+      "thumb": "assets/thumb-05.jpg",
+      "yaw": -90,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p02",
+          "yaw": -80,
+          "pitch": -20
+        },
+        {
+          "target": "p01",
+          "yaw": 125,
+          "pitch": -20
+        }
+      ],
+      "panels": [
+        "wen-xuan-timeline",
+        "holy-spirit-magazine",
+        "wen-xuan-scroll-1",
+        "wen-xuan-scroll-2",
+        "wen-xuan-scroll-3",
+        "wen-xuan-scroll-4",
+        "wen-xuan-scroll-5",
+        "wen-xuan-scroll-6",
+        "wen-xuan-scroll-7"
+      ],
+      "parent": "p04"
+    },
+    "p06": {
+      "title": "文宣處展區",
+      "storyTitle": "走過文宣，跨越100",
+      "description": "從刊物演進掛軸、文宣大事記到聖靈月刊，看見一代代同工透過文字服事的足跡。也可以打開完整展板，慢慢閱讀。",
+      "department": "文宣處",
+      "location": "7F · 文宣處",
+      "image": "assets/pano-06.jpg",
+      "lowImage": "assets/pano-06-low.jpg",
+      "thumb": "assets/thumb-06.jpg",
+      "yaw": -90,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p12",
+          "yaw": 180,
+          "pitch": -15
+        },
+        {
+          "target": "p02",
+          "yaw": -112,
+          "pitch": -18
+        }
+      ],
+      "panels": [
+        "wen-xuan-timeline",
+        "holy-spirit-magazine",
+        "wen-xuan-scroll-1",
+        "wen-xuan-scroll-2",
+        "wen-xuan-scroll-3",
+        "wen-xuan-scroll-4",
+        "wen-xuan-scroll-5",
+        "wen-xuan-scroll-6",
+        "wen-xuan-scroll-7"
+      ],
+      "info": [
+        {
+          "label": "認識聖靈月刊",
+          "panel": "holy-spirit-magazine",
+          "yaw": -50,
+          "pitch": 2
+        }
+      ]
+    },
+    "p07": {
+      "title": "教牧重要事記",
+      "storyTitle": "在年表裡，看見耕耘",
+      "description": "透過教牧重要事記與事工介紹，認識宗教教育、教材編寫與教牧工作的歷程。沿著展板，繼續探索聖樂事工。",
+      "department": "教牧處",
+      "location": "7F · 教牧處",
+      "image": "assets/pano-07.jpg",
+      "lowImage": "assets/pano-07-low.jpg",
+      "thumb": "assets/thumb-07.jpg",
+      "yaw": -100,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p09",
+          "yaw": -175,
+          "pitch": -18
+        },
+        {
+          "target": "p11",
+          "yaw": -70,
+          "pitch": -20
+        }
+      ],
+      "panels": [],
+      "alternate": "p08"
+    },
+    "p08": {
+      "title": "教牧重要事記・另一視角",
+      "storyTitle": "在年表裡，看見耕耘",
+      "description": "透過教牧重要事記與事工介紹，認識宗教教育、教材編寫與教牧工作的歷程。沿著展板，繼續探索聖樂事工。",
+      "department": "教牧處",
+      "location": "7F · 教牧處",
+      "image": "assets/pano-08.jpg",
+      "lowImage": "assets/pano-08-low.jpg",
+      "thumb": "assets/thumb-08.jpg",
+      "yaw": -100,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p09",
+          "yaw": -175,
+          "pitch": -18
+        },
+        {
+          "target": "p11",
+          "yaw": -70,
+          "pitch": -20
+        }
+      ],
+      "panels": [],
+      "parent": "p07"
+    },
+    "p09": {
+      "title": "教牧教材與出版品",
+      "storyTitle": "讓教導，走進日常",
+      "description": "教材、手冊與出版品，記錄教牧與宗教教育事工的累積。順著窗邊走道，可以繼續閱讀教牧處的重要事記。",
+      "department": "教牧處",
+      "location": "7F · 教牧處",
+      "image": "assets/pano-09.jpg",
+      "lowImage": "assets/pano-09-low.jpg",
+      "thumb": "assets/thumb-09.jpg",
+      "yaw": -90,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p01",
+          "yaw": 90,
+          "pitch": -20
+        },
+        {
+          "target": "p07",
+          "yaw": 180,
+          "pitch": -18
+        }
+      ],
+      "panels": [],
+      "alternate": "p10"
+    },
+    "p10": {
+      "title": "教牧教材與出版品・另一視角",
+      "storyTitle": "讓教導，走進日常",
+      "description": "教材、手冊與出版品，記錄教牧與宗教教育事工的累積。順著窗邊走道，可以繼續閱讀教牧處的重要事記。",
+      "department": "教牧處",
+      "location": "7F · 教牧處",
+      "image": "assets/pano-10.jpg",
+      "lowImage": "assets/pano-10-low.jpg",
+      "thumb": "assets/thumb-10.jpg",
+      "yaw": -90,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p01",
+          "yaw": 90,
+          "pitch": -20
+        },
+        {
+          "target": "p07",
+          "yaw": 180,
+          "pitch": -18
+        }
+      ],
+      "panels": [],
+      "parent": "p09"
+    },
+    "p11": {
+      "title": "聖樂事工展板",
+      "storyTitle": "在歌聲裡，延續傳承",
+      "description": "聖樂事工展板呈現近年的工作推廣、活動與教會發展資訊。慢慢環視，也看看窗邊陳列的教材與書籍。",
+      "department": "教牧處",
+      "location": "7F · 教牧處",
+      "image": "assets/pano-11.jpg",
+      "lowImage": "assets/pano-11-low.jpg",
+      "thumb": "assets/thumb-11.jpg",
+      "yaw": 90,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p07",
+          "yaw": 0,
+          "pitch": -20
+        }
+      ],
+      "panels": []
+    },
+    "p12": {
+      "title": "神學院時光迴廊",
+      "storyTitle": "從影像，回望傳承",
+      "description": "沿著神學院時光迴廊，看看歷史相簿與影像；一旁的書架，也記錄著教會出版與教育事工的累積。",
+      "department": "神學院",
+      "location": "7F · 神學院",
+      "image": "assets/pano-12.jpg",
+      "lowImage": "assets/pano-12-low.jpg",
+      "thumb": "assets/thumb-12.jpg",
+      "yaw": 100,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p14",
+          "yaw": 25,
+          "pitch": -20
+        },
+        {
+          "target": "p06",
+          "yaw": -90,
+          "pitch": -15
+        }
+      ],
+      "panels": []
+    },
+    "p13": {
+      "title": "七樓入口",
+      "storyTitle": "從這裡，開始尋根",
+      "description": "走進七樓閱覽室，沿著文宣、教牧與神學院的展覽，認識文字、教育與信仰傳承的不同面貌。",
+      "department": "入口",
+      "location": "7F · 七樓展廳",
+      "image": "assets/pano-13.jpg",
+      "lowImage": "assets/pano-13-low.jpg",
+      "thumb": "assets/thumb-13.jpg",
+      "yaw": -90,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p14",
+          "yaw": -95,
+          "pitch": -16
+        }
+      ],
+      "panels": []
+    },
+    "p14": {
+      "title": "展廳迎賓區",
+      "storyTitle": "推開門，遇見百年",
+      "description": "玻璃門內，是七樓展廳的開闊空間。從入口出發，先看看神學院的歷史影像，再走進文宣與教牧展區。",
+      "department": "入口",
+      "location": "7F · 七樓展廳",
+      "image": "assets/pano-14.jpg",
+      "lowImage": "assets/pano-14-low.jpg",
+      "thumb": "assets/thumb-14.jpg",
+      "yaw": -30,
+      "pitch": -3,
+      "links": [
+        {
+          "target": "p13",
+          "yaw": 180,
+          "pitch": -18
+        },
+        {
+          "target": "p12",
+          "yaw": -15,
+          "pitch": -19
+        }
+      ],
+      "panels": []
+    }
+  },
+  "tracks": [
+    {
+      "name": "wen-xuan-1.mp3",
+      "label": "文宣展區 1",
+      "floor": "7F",
+      "scene": null,
+      "seconds": 114.677551,
+      "size": 1462845,
+      "sourceId": "1e_88Ezii8Y7Gm5YZ-0Q5U4m8_uEOPyrd",
+      "durationLabel": "1:55",
+      "path": "assets/audio/wen-xuan-1.mp3",
+      "mappingStatus": "依原始檔名編號；對應具體全景熱點位置待確認"
+    },
+    {
+      "name": "wen-xuan-2.mp3",
+      "label": "文宣展區 2",
+      "floor": "7F",
+      "scene": null,
+      "seconds": 90.226939,
+      "size": 1202008,
+      "sourceId": "1wqPJ9AA_Thn-T31skPXG3-tXfgTOPjwd",
+      "durationLabel": "1:30",
+      "path": "assets/audio/wen-xuan-2.mp3",
+      "mappingStatus": "依原始檔名編號；對應具體全景熱點位置待確認"
+    },
+    {
+      "name": "wen-xuan-3.mp3",
+      "label": "文宣展區 3",
+      "floor": "7F",
+      "scene": null,
+      "seconds": 20.062041,
+      "size": 248609,
+      "sourceId": "1pJY-X_A4gDuLqwTzQJnyw6Ohyz-bIqL6",
+      "durationLabel": "0:20",
+      "path": "assets/audio/wen-xuan-3.mp3",
+      "mappingStatus": "依原始檔名編號；對應具體全景熱點位置待確認"
+    },
+    {
+      "name": "wen-xuan-4.mp3",
+      "label": "文宣展區 4",
+      "floor": "7F",
+      "scene": null,
+      "seconds": 43.284898,
+      "size": 565271,
+      "sourceId": "1e39dMTYBSVq3xUGIZpgK_R8yKACpQrSE",
+      "durationLabel": "0:43",
+      "path": "assets/audio/wen-xuan-4.mp3",
+      "mappingStatus": "依原始檔名編號；對應具體全景熱點位置待確認"
+    },
+    {
+      "name": "wen-xuan-5.mp3",
+      "label": "文宣展區 5",
+      "floor": "7F",
+      "scene": null,
+      "seconds": 49.658776,
+      "size": 650795,
+      "sourceId": "1pusb3Ve76or2o05BykhxNtAHG7IqJzRt",
+      "durationLabel": "0:50",
+      "path": "assets/audio/wen-xuan-5.mp3",
+      "mappingStatus": "依原始檔名編號；對應具體全景熱點位置待確認"
+    },
+    {
+      "name": "wen-xuan-6.mp3",
+      "label": "文宣展區 6",
+      "floor": "7F",
+      "scene": null,
+      "seconds": 25.077551,
+      "size": 288464,
+      "sourceId": "12uQfgIKAopJ9jNp4Zlt_f0p-1JwHNV4B",
+      "durationLabel": "0:25",
+      "path": "assets/audio/wen-xuan-6.mp3",
+      "mappingStatus": "依原始檔名編號；對應具體全景熱點位置待確認"
+    },
+    {
+      "name": "wen-xuan-7.mp3",
+      "label": "文宣展區 7",
+      "floor": "7F",
+      "scene": null,
+      "seconds": 14.341224,
+      "size": 175852,
+      "sourceId": "1sebS56tL2Sub0lRn_wdHEI4TcJNOLW9d",
+      "durationLabel": "0:14",
+      "path": "assets/audio/wen-xuan-7.mp3",
+      "mappingStatus": "依原始檔名編號；對應具體全景熱點位置待確認"
+    },
+    {
+      "name": "xuan-dao.mp3",
+      "label": "宣道處語音導覽",
+      "floor": "4F",
+      "scene": null,
+      "seconds": 310.83102,
+      "size": 4305212,
+      "sourceId": "1DitUqx3eieWMypBNyBSDM3xbFTG2Zvi6",
+      "durationLabel": "5:11",
+      "path": "assets/audio/xuan-dao.mp3",
+      "mappingStatus": "獨立語音，沒有對應的 4F 全景照片"
+    }
+  ],
+  "panels": [
+    {
+      "title": "認識聖靈月刊",
+      "path": "assets/panels/holy-spirit-magazine.jpg",
+      "sourceId": "1Xh_PMJMarzLaaelYpGqiv48snA_jxPfa",
+      "sourceFilename": "96dpi_認識聖靈月刊.jpg",
+      "id": "holy-spirit-magazine"
+    },
+    {
+      "title": "臺灣真耶穌教會文宣大事記",
+      "path": "assets/panels/wen-xuan-timeline.jpg",
+      "sourceId": "1IdTQT2QNYF8jqgmICdgNwIN_RQyQc-5H",
+      "sourceFilename": "96dpi_文宣大事記.jpg",
+      "id": "wen-xuan-timeline"
+    },
+    {
+      "title": "刊物演進歷程掛軸 3",
+      "path": "assets/panels/wen-xuan-scroll-3.jpg",
+      "sourceId": "1LcHlMcbd0lvGnfQMesLeLWrKvkNaj1KZ",
+      "sourceFilename": "120dpi_七張掛軸_單透布_頁面_3.jpg",
+      "id": "wen-xuan-scroll-3"
+    },
+    {
+      "title": "刊物演進歷程掛軸 5",
+      "path": "assets/panels/wen-xuan-scroll-5.jpg",
+      "sourceId": "1PZAiKq8YnSMk6pff2qgSSOXRE4zxF2wT",
+      "sourceFilename": "120dpi_七張掛軸_單透布_頁面_5.jpg",
+      "id": "wen-xuan-scroll-5"
+    },
+    {
+      "title": "刊物演進歷程掛軸 6",
+      "path": "assets/panels/wen-xuan-scroll-6.jpg",
+      "sourceId": "1Hp7XaLqW3lhBs4n62B8VCQeyDSxNH9I8",
+      "sourceFilename": "120dpi_七張掛軸_單透布_頁面_6.jpg",
+      "id": "wen-xuan-scroll-6"
+    },
+    {
+      "title": "刊物演進歷程掛軸 4",
+      "path": "assets/panels/wen-xuan-scroll-4.jpg",
+      "sourceId": "1_SM42TDaUXklJFxzXMwVht1Q3J0BOfr_",
+      "sourceFilename": "120dpi_七張掛軸_單透布_頁面_4.jpg",
+      "id": "wen-xuan-scroll-4"
+    },
+    {
+      "title": "刊物演進歷程掛軸 2",
+      "path": "assets/panels/wen-xuan-scroll-2.jpg",
+      "sourceId": "1YaRDjN0F8-GedLO7fdbtMrivsSXkKaE2",
+      "sourceFilename": "120dpi_七張掛軸_單透布_頁面_2.jpg",
+      "id": "wen-xuan-scroll-2"
+    },
+    {
+      "title": "刊物演進歷程掛軸 1",
+      "path": "assets/panels/wen-xuan-scroll-1.jpg",
+      "sourceId": "1Tyl6O5nXrUIYd1t2AEkdzq22YYgg2T0_",
+      "sourceFilename": "120dpi_七張掛軸_單透布_頁面_1.jpg",
+      "id": "wen-xuan-scroll-1"
+    },
+    {
+      "title": "刊物演進歷程掛軸 7",
+      "path": "assets/panels/wen-xuan-scroll-7.jpg",
+      "sourceId": "1Kr_gxbGrqT5K7va6vg98AeH4fX35mJ07",
+      "sourceFilename": "120dpi_七張掛軸_單透布_頁面_7.jpg",
+      "id": "wen-xuan-scroll-7"
+    }
+  ],
+  "history": [
+    {
+      "year": "1926",
+      "title": "臺灣支部",
+      "description": "真耶穌教會傳入臺灣，展開臺灣的傳教歷程。"
+    },
+    {
+      "year": "1941",
+      "title": "日本本部至臺灣省支會"
+    },
+    {
+      "year": "1950",
+      "title": "臺灣省真耶穌教會"
+    },
+    {
+      "year": "1956.5",
+      "title": "公園路臺灣總會・前半期"
+    },
+    {
+      "year": "1977",
+      "title": "公園路臺灣總會・後半期"
+    },
+    {
+      "year": "1992",
+      "title": "松竹路臺灣總會"
+    },
+    {
+      "year": "2026",
+      "title": "臺灣傳教100周年",
+      "description": "回娘家──尋根之旅，沿著總會各處室的展覽，回望百年足跡。"
+    }
+  ],
+  "sources": [
+    "https://joy.org.tw/tjctw/",
+    "https://joy.org.tw/holyspirit_detail.php?id=12307&period=582"
+  ]
+}
