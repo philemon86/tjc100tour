@@ -7,9 +7,9 @@
   <meta name="description" content="走進真耶穌教會臺灣總會七樓展廳，以360度實景、語音與百年歷程，展開臺灣傳教100周年的線上尋根之旅。">
   <title>百年足跡｜線上尋根之旅</title>
   <link rel="stylesheet" href="vendor/pannellum.css">
-  <link rel="stylesheet" href="style.css?v=20261010-positions1">
+  <link rel="stylesheet" href="style.css?v=20261010-direct1">
   <script src="vendor/pannellum.js" defer></script>
-  <script src="app.js?v=20261010-positions1" defer></script>
+  <script src="app.js?v=20261010-direct1" defer></script>
 </head>
 <body data-page="tour">
   <a class="skip-link" href="#main">跳至導覽內容</a>
@@ -58,7 +58,7 @@
   <dialog id="route-dialog" aria-labelledby="route-title"><div class="dialog-head"><div><p class="eyebrow">YOUR JOURNEY</p><h2 id="route-title">跟著路線，探索七樓</h2></div><button class="close-dialog" aria-label="關閉">×</button></div><p class="dialog-intro">點選任一站，直接進入全景。這是依展覽主題排列的導覽路線。</p><div class="route-list" id="route-list"></div></dialog>
   <dialog id="audio-dialog" aria-labelledby="audio-dialog-title"><div class="dialog-head"><div><p class="eyebrow">LISTEN TO THE STORIES</p><h2 id="audio-dialog-title">語音導覽</h2></div><button class="close-dialog" aria-label="關閉">×</button></div><p class="dialog-intro">選擇想聽的故事，再依自己的步調參觀。宣道處位於四樓，目前提供語音。</p><div id="audio-list" class="audio-list"></div></dialog>
   <dialog id="help-dialog" aria-labelledby="help-title"><div class="dialog-head"><div><p class="eyebrow">WELCOME, TAKE YOUR TIME</p><h2 id="help-title">用自己的步調，走一趟尋根之旅</h2></div><button class="close-dialog" aria-label="關閉">×</button></div><div class="help-grid"><div><b>01</b><h3>轉動視角</h3><p>手機用手指滑動全景，雙指縮放；電腦用滑鼠拖曳、滾輪縮放，也可以用方向鍵。</p></div><div><b>02</b><h3>走到下一站</h3><p>點擊畫面裡的箭頭，或從下方照片與導覽路線選擇展區。切換後也能回頭看看。</p></div><div><b>03</b><h3>聆聽故事</h3><p>按下播放鍵啟動語音。可暫停、拖曳進度或調整速度；切換展區時會先暫停。</p></div></div><p class="material-note">目前實景範圍為七樓；語音包含七樓文宣處及四樓宣道處。其他樓層可隨素材補齊擴充。</p><button class="primary-button close-dialog">開始探索 <span aria-hidden="true">→</span></button></dialog>
-  <dialog id="panel-dialog" class="panel-dialog" aria-labelledby="panel-title"><div class="dialog-head"><div><p class="eyebrow">READ THE EXHIBITION</p><h2 id="panel-title">展板</h2></div><button class="close-dialog" aria-label="關閉">×</button></div><div class="panel-tools"><label for="panel-select" class="sr-only">選擇展板</label><select id="panel-select"></select><a id="panel-original" href="#" target="_blank" rel="noopener noreferrer">開啟原圖放大 ↗</a></div><img id="panel-image" alt="展板" loading="lazy"></dialog>
+  <dialog id="panel-dialog" class="panel-dialog" aria-labelledby="panel-title"><div class="dialog-head"><div><p class="eyebrow">READ THE EXHIBITION</p><h2 id="panel-title">展板</h2></div><button class="close-dialog" aria-label="關閉">×</button></div><div class="panel-tools"><a id="panel-original" href="#" target="_blank" rel="noopener noreferrer">開啟原圖放大 ↗</a></div><div id="panel-content" aria-busy="false"><p id="panel-status" class="panel-status" role="status" hidden></p><img id="panel-image" alt="展板" hidden></div></dialog>
   <noscript><p class="noscript">請啟用 JavaScript 使用360度導覽。您也可以<a href="https://joy.org.tw/tjctw/">前往百年資訊網站</a>。</p></noscript>
 </body>
 </html>

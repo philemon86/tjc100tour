@@ -163,9 +163,9 @@ dialog::backdrop { background:#172e30a3; }
 .help-grid p,.material-note { font-size:12px; line-height:2; color:var(--muted); margin:0; }
 .material-note { padding:16px; background:var(--surface-soft); border:1px solid var(--line); border-radius:3px; }
 .panel-dialog { width:min(1000px,calc(100% - 32px)); }
-.panel-tools { display:flex; justify-content:space-between; gap:15px; align-items:center; margin:20px 0; }
-.panel-tools select { max-width:70%; min-height:44px; padding:9px 12px; border:1px solid var(--line); border-radius:3px; background:var(--surface-soft); color:var(--ink); font:12px var(--sans); }
-.panel-tools a { font-size:11px; white-space:nowrap; }
+.panel-tools { display:flex; justify-content:flex-end; align-items:center; margin:12px 0; }
+.panel-tools a { display:inline-flex; align-items:center; min-height:44px; font-size:11px; white-space:nowrap; }
+.panel-status { margin:0; padding:36px 12px; text-align:center; color:var(--muted); font-size:13px; }
 #panel-image { width:100%; height:auto; display:block; }
 .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
 .pnlm-load-box,.pnlm-about-msg,.pnlm-panorama-info,.pnlm-error-msg { display:none!important; }
@@ -287,7 +287,6 @@ dialog::backdrop { background:#172e30a3; }
   .route-entry strong { font-size:11px; }
   .route-entry small { font-size:9px; }
   .help-grid p,.material-note { font-size:12px; }
-  .panel-tools select { font-size:11px; padding:8px; max-width:65%; }
   .panel-tools a { font-size:10px; }
 }
 @media(max-width:400px) {

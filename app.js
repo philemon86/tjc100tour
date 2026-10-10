@@ -3,9 +3,10 @@ const $ = (id) => document.getElementById(id);
 const ui = { audio: $('audio'), status: $('viewer-status') };
 let data, viewer, currentScene, currentTrack, rotating = false, loadFailed = false;
 let sceneLoading = true, pendingScene = null;
+let panelRequest = 0;
 let prefetchTimer = null, prefetchController = null, prefetchPath = null;
 const prefetched = new Set();
-const assetVersion = '20261010-positions1';
+const assetVersion = '20261010-direct1';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile = window.matchMedia('(max-width: 720px)').matches;
 const panoramaPath = (scene) => mobile || navigator.connection?.saveData ? scene.lowImage : scene.image;
@@ -219,26 +220,56 @@ ui.audio.addEventListener('error',() => setText('audio-status','這段語音未�
 $('audio-seek').addEventListener('input',event => { if (Number.isFinite(ui.audio.duration)) ui.audio.currentTime = Number(event.target.value) / 100 * ui.audio.duration; });
 $('speed-button').addEventListener('click',() => { const rates = [1,1.25,1.5,.75]; const next = rates[(rates.indexOf(ui.audio.playbackRate)+1)%rates.length]; ui.audio.defaultPlaybackRate = next; ui.audio.playbackRate = next; $('speed-button').textContent = next + '×'; $('speed-button').setAttribute('aria-label','播放速度，' + next + '倍'); });
 
-function openPanel(panelId) {
+async function openPanel(panelId) {
   const panel = data.panels.find(p => p.id === panelId);
   if (!panel) return;
-  // Keep the image menu local to the exhibits visible at this stop.
-  const visibleIds = new Set([...(data.scenes[currentScene]?.panels || []),panelId]);
-  const select = $('panel-select');
-  select.replaceChildren();
-  Array.from(visibleIds,id => data.panels.find(item => item.id === id)).filter(Boolean).forEach(item => {
-    const option = document.createElement('option');
-    option.value = item.id; option.textContent = item.title;
-    select.append(option);
-  });
+  const request = ++panelRequest;
+  const dialog = $('panel-dialog');
+  const content = $('panel-content');
+  const status = $('panel-status');
+  // Remove the previous decoded image before changing exhibit labels.
+  // Each physical reading point opens only its own original.
+  $('panel-image').hidden = true;
+  $('panel-image').removeAttribute('src');
   setText('panel-title',panel.title);
-  $('panel-image').src = panel.path;
-  $('panel-image').alt = panel.title + '完整展板';
-  $('panel-select').value = panelId;
   $('panel-original').href = panel.path;
-  $('panel-dialog').scrollTop = 0;
+  content.setAttribute('aria-busy','true');
+  status.textContent = '正在準備這張原圖…';
+  status.setAttribute('role','status');
+  status.hidden = false;
   openDialog('panel-dialog');
+  dialog.scrollTop = 0;
+  const image = new Image();
+  image.id = 'panel-image';
+  image.alt = panel.title + '完整展板';
+  image.loading = 'eager';
+  image.decoding = 'async';
+  try {
+    const loaded = new Promise((resolve,reject) => {
+      image.onload = resolve;
+      image.onerror = () => reject(new Error('展板原圖未能載入'));
+    });
+    image.src = panel.path;
+    await loaded;
+    if (image.decode) await image.decode();
+    // A slow earlier request must never replace a newly opened exhibit.
+    if (request !== panelRequest || !dialog.open) return;
+    $('panel-image').replaceWith(image);
+    status.hidden = true;
+    content.setAttribute('aria-busy','false');
+  } catch (_) {
+    if (request !== panelRequest || !dialog.open) return;
+    status.textContent = '這張原圖暫時無法載入，可點「開啟原圖放大」重試。';
+    status.setAttribute('role','alert');
+    content.setAttribute('aria-busy','false');
+  }
 }
+$('panel-dialog').addEventListener('close',() => {
+  if ($('panel-dialog').open) return;
+  ++panelRequest;
+  $('panel-image').hidden = true;
+  $('panel-content').setAttribute('aria-busy','false');
+});
 
 async function init() {
   const response = await fetch('data.json?v=' + assetVersion);
@@ -269,7 +300,6 @@ async function init() {
     button.addEventListener('click',() => { selectTrack(index,true); $('audio-dialog').close(); }); $('audio-list').append(button);
   });
   data.history.forEach(item => { const entry = document.createElement('article'); entry.className = 'timeline-item'; const year = document.createElement('span'); year.className = 'timeline-year'; year.textContent = item.year; const text = document.createElement('div'); const h = document.createElement('h2'); h.textContent = item.title; text.append(h); if (item.description) { const p = document.createElement('p'); p.textContent = item.description; text.append(p); } entry.append(year,text); $('timeline').append(entry); });
-  $('panel-select').addEventListener('change',event => openPanel(event.target.value));
   const hashId = location.hash.startsWith('#tour/') ? decodeURIComponent(location.hash.slice(6)) : '';
   currentScene = data.scenes[hashId] ? hashId : data.firstScene;
   const startHistory = location.hash === '#history';
