@@ -19,9 +19,8 @@
       "description": "沿著展廳中央轉動視角，看看教牧工作的介紹、教材與展品。另一側是文宣展區；同一個空間，呈現不同的事工記憶。",
       "department": "教牧處",
       "location": "7F · 教牧處",
-      "image": "assets/pano-01.webp",
-      "lowImage": "assets/pano-01-low.webp",
-      "thumb": "assets/thumb-01.webp",
+      "image": "assets/pano-01.jpg",
+      "thumb": "assets/thumb-01.jpg",
       "yaw": 90,
       "pitch": -3,
       "links": [
@@ -45,9 +44,8 @@
       "description": "文宣大事記整理刊物與網路的發展歷程。點擊展板與上方各張掛軸的閱讀點，即可查看對應的清晰原圖。",
       "department": "文宣處",
       "location": "7F · 文宣處",
-      "image": "assets/pano-02.webp",
-      "lowImage": "assets/pano-02-low.webp",
-      "thumb": "assets/thumb-02.webp",
+      "image": "assets/pano-02.jpg",
+      "thumb": "assets/thumb-02.jpg",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -103,9 +101,8 @@
       "description": "文宣大事記整理刊物與網路的發展歷程。點擊展板與上方各張掛軸的閱讀點，即可查看對應的清晰原圖。",
       "department": "文宣處",
       "location": "7F · 文宣處",
-      "image": "assets/pano-03.webp",
-      "lowImage": "assets/pano-03-low.webp",
-      "thumb": "assets/thumb-03.webp",
+      "image": "assets/pano-03.jpg",
+      "thumb": "assets/thumb-03.jpg",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -161,9 +158,8 @@
       "description": "桌前是「認識聖靈月刊」展板，上方懸掛不同年代的刊物掛軸。點擊各展品上的閱讀點，可打開該張清晰原圖；也可以轉動視角看看刊物、印章、鋼印與留言區。",
       "department": "文宣處",
       "location": "7F · 文宣處",
-      "image": "assets/pano-04.webp",
-      "lowImage": "assets/pano-04-low.webp",
-      "thumb": "assets/thumb-04.webp",
+      "image": "assets/pano-04.jpg",
+      "thumb": "assets/thumb-04.jpg",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -226,9 +222,8 @@
       "description": "桌前是「認識聖靈月刊」展板，上方懸掛不同年代的刊物掛軸。點擊各展品上的閱讀點，可打開該張清晰原圖；也可以轉動視角看看刊物、印章、鋼印與留言區。",
       "department": "文宣處",
       "location": "7F · 文宣處",
-      "image": "assets/pano-05.webp",
-      "lowImage": "assets/pano-05-low.webp",
-      "thumb": "assets/thumb-05.webp",
+      "image": "assets/pano-05.jpg",
+      "thumb": "assets/thumb-05.jpg",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -291,9 +286,8 @@
       "description": "從刊物演進掛軸、文宣大事記到聖靈月刊，看見一代代同工透過文字服事的足跡。也可以打開完整展板，慢慢閱讀。",
       "department": "文宣處",
       "location": "7F · 文宣處",
-      "image": "assets/pano-06.webp",
-      "lowImage": "assets/pano-06-low.webp",
-      "thumb": "assets/thumb-06.webp",
+      "image": "assets/pano-06.jpg",
+      "thumb": "assets/thumb-06.jpg",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -334,9 +328,8 @@
       "description": "透過教牧重要事記與事工介紹，認識宗教教育、教材編寫與教牧工作的歷程。沿著展板，繼續探索聖樂事工。",
       "department": "教牧處",
       "location": "7F · 教牧處",
-      "image": "assets/pano-07.webp",
-      "lowImage": "assets/pano-07-low.webp",
-      "thumb": "assets/thumb-07.webp",
+      "image": "assets/pano-07.jpg",
+      "thumb": "assets/thumb-07.jpg",
       "yaw": -100,
       "pitch": -3,
       "links": [
@@ -361,9 +354,8 @@
       "description": "透過教牧重要事記與事工介紹，認識宗教教育、教材編寫與教牧工作的歷程。沿著展板，繼續探索聖樂事工。",
       "department": "教牧處",
       "location": "7F · 教牧處",
-      "image": "assets/pano-08.webp",
-      "lowImage": "assets/pano-08-low.webp",
-      "thumb": "assets/thumb-08.webp",
+      "image": "assets/pano-08.jpg",
+      "thumb": "assets/thumb-08.jpg",
       "yaw": -100,
       "pitch": -3,
       "links": [
@@ -388,9 +380,8 @@
       "description": "教材、手冊與出版品，記錄教牧與宗教教育事工的累積。順著窗邊走道，可以繼續閱讀教牧處的重要事記。",
       "department": "教牧處",
       "location": "7F · 教牧處",
-      "image": "assets/pano-09.webp",
-      "lowImage": "assets/pano-09-low.webp",
-      "thumb": "assets/thumb-09.webp",
+      "image": "assets/pano-09.jpg",
+      "thumb": "assets/thumb-09.jpg",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -415,9 +406,8 @@
       "description": "教材、手冊與出版品，記錄教牧與宗教教育事工的累積。順著窗邊走道，可以繼續閱讀教牧處的重要事記。",
       "department": "教牧處",
       "location": "7F · 教牧處",
-      "image": "assets/pano-10.webp",
-      "lowImage": "assets/pano-10-low.webp",
-      "thumb": "assets/thumb-10.webp",
+      "image": "assets/pano-10.jpg",
+      "thumb": "assets/thumb-10.jpg",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -442,9 +432,8 @@
       "description": "聖樂事工展板呈現近年的工作推廣、活動與教會發展資訊。慢慢環視，也看看窗邊陳列的教材與書籍。",
       "department": "教牧處",
       "location": "7F · 教牧處",
-      "image": "assets/pano-11.webp",
-      "lowImage": "assets/pano-11-low.webp",
-      "thumb": "assets/thumb-11.webp",
+      "image": "assets/pano-11.jpg",
+      "thumb": "assets/thumb-11.jpg",
       "yaw": 90,
       "pitch": -3,
       "links": [
@@ -463,9 +452,8 @@
       "description": "沿著神學院時光迴廊，看看歷史相簿與影像；一旁的書架，也記錄著教會出版與教育事工的累積。",
       "department": "神學院",
       "location": "7F · 神學院",
-      "image": "assets/pano-12.webp",
-      "lowImage": "assets/pano-12-low.webp",
-      "thumb": "assets/thumb-12.webp",
+      "image": "assets/pano-12.jpg",
+      "thumb": "assets/thumb-12.jpg",
       "yaw": 100,
       "pitch": -3,
       "links": [
@@ -489,9 +477,8 @@
       "description": "走進七樓閱覽室，沿著文宣、教牧與神學院的展覽，認識文字、教育與信仰傳承的不同面貌。",
       "department": "入口",
       "location": "7F · 七樓展廳",
-      "image": "assets/pano-13.webp",
-      "lowImage": "assets/pano-13-low.webp",
-      "thumb": "assets/thumb-13.webp",
+      "image": "assets/pano-13.jpg",
+      "thumb": "assets/thumb-13.jpg",
       "yaw": -90,
       "pitch": -3,
       "links": [
@@ -510,9 +497,8 @@
       "description": "玻璃門內，是七樓展廳的開闊空間。從入口出發，先看看神學院的歷史影像，再走進文宣與教牧展區。",
       "department": "入口",
       "location": "7F · 七樓展廳",
-      "image": "assets/pano-14.webp",
-      "lowImage": "assets/pano-14-low.webp",
-      "thumb": "assets/thumb-14.webp",
+      "image": "assets/pano-14.jpg",
+      "thumb": "assets/thumb-14.jpg",
       "yaw": -30,
       "pitch": -3,
       "links": [
@@ -636,9 +622,7 @@
       "sourceId": "1Xh_PMJMarzLaaelYpGqiv48snA_jxPfa",
       "sourceFilename": "96dpi_認識聖靈月刊.jpg",
       "id": "holy-spirit-magazine",
-      "shortTitle": "聖靈月刊展板",
-      "smallImage": "assets/panels/holy-spirit-magazine-900.webp",
-      "readingImage": "assets/panels/holy-spirit-magazine-1800.webp"
+      "shortTitle": "聖靈月刊展板"
     },
     {
       "title": "臺灣真耶穌教會文宣大事記",
@@ -646,72 +630,56 @@
       "sourceId": "1IdTQT2QNYF8jqgmICdgNwIN_RQyQc-5H",
       "sourceFilename": "96dpi_文宣大事記.jpg",
       "id": "wen-xuan-timeline",
-      "shortTitle": "文宣大事記",
-      "smallImage": "assets/panels/wen-xuan-timeline-900.webp",
-      "readingImage": "assets/panels/wen-xuan-timeline-1800.webp"
+      "shortTitle": "文宣大事記"
     },
     {
       "title": "刊物掛軸3｜1935–1941｜福音刊物",
       "path": "assets/panels/wen-xuan-scroll-3.jpg",
       "sourceId": "1LcHlMcbd0lvGnfQMesLeLWrKvkNaj1KZ",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_3.jpg",
-      "id": "wen-xuan-scroll-3",
-      "smallImage": "assets/panels/wen-xuan-scroll-3-900.webp",
-      "readingImage": "assets/panels/wen-xuan-scroll-3-1800.webp"
+      "id": "wen-xuan-scroll-3"
     },
     {
       "title": "刊物掛軸5｜1960–2000｜宗教教育",
       "path": "assets/panels/wen-xuan-scroll-5.jpg",
       "sourceId": "1PZAiKq8YnSMk6pff2qgSSOXRE4zxF2wT",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_5.jpg",
-      "id": "wen-xuan-scroll-5",
-      "smallImage": "assets/panels/wen-xuan-scroll-5-900.webp",
-      "readingImage": "assets/panels/wen-xuan-scroll-5-1800.webp"
+      "id": "wen-xuan-scroll-5"
     },
     {
       "title": "刊物掛軸6｜1965–2001｜青年刊物",
       "path": "assets/panels/wen-xuan-scroll-6.jpg",
       "sourceId": "1Hp7XaLqW3lhBs4n62B8VCQeyDSxNH9I8",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_6.jpg",
-      "id": "wen-xuan-scroll-6",
-      "smallImage": "assets/panels/wen-xuan-scroll-6-900.webp",
-      "readingImage": "assets/panels/wen-xuan-scroll-6-1800.webp"
+      "id": "wen-xuan-scroll-6"
     },
     {
       "title": "刊物掛軸4｜1951–1977｜聖靈刊物",
       "path": "assets/panels/wen-xuan-scroll-4.jpg",
       "sourceId": "1_SM42TDaUXklJFxzXMwVht1Q3J0BOfr_",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_4.jpg",
-      "id": "wen-xuan-scroll-4",
-      "smallImage": "assets/panels/wen-xuan-scroll-4-900.webp",
-      "readingImage": "assets/panels/wen-xuan-scroll-4-1800.webp"
+      "id": "wen-xuan-scroll-4"
     },
     {
       "title": "刊物掛軸2｜1926–1932｜聖靈報",
       "path": "assets/panels/wen-xuan-scroll-2.jpg",
       "sourceId": "1YaRDjN0F8-GedLO7fdbtMrivsSXkKaE2",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_2.jpg",
-      "id": "wen-xuan-scroll-2",
-      "smallImage": "assets/panels/wen-xuan-scroll-2-900.webp",
-      "readingImage": "assets/panels/wen-xuan-scroll-2-1800.webp"
+      "id": "wen-xuan-scroll-2"
     },
     {
       "title": "刊物掛軸1｜1919–1924｜初期報刊",
       "path": "assets/panels/wen-xuan-scroll-1.jpg",
       "sourceId": "1Tyl6O5nXrUIYd1t2AEkdzq22YYgg2T0_",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_1.jpg",
-      "id": "wen-xuan-scroll-1",
-      "smallImage": "assets/panels/wen-xuan-scroll-1-900.webp",
-      "readingImage": "assets/panels/wen-xuan-scroll-1-1800.webp"
+      "id": "wen-xuan-scroll-1"
     },
     {
       "title": "刊物掛軸7｜跨越100｜文宣序言",
       "path": "assets/panels/wen-xuan-scroll-7.jpg",
       "sourceId": "1Kr_gxbGrqT5K7va6vg98AeH4fX35mJ07",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_7.jpg",
-      "id": "wen-xuan-scroll-7",
-      "smallImage": "assets/panels/wen-xuan-scroll-7-900.webp",
-      "readingImage": "assets/panels/wen-xuan-scroll-7-1800.webp"
+      "id": "wen-xuan-scroll-7"
     }
   ],
   "history": [
@@ -749,5 +717,139 @@
   "sources": [
     "https://joy.org.tw/tjctw/",
     "https://joy.org.tw/holyspirit_detail.php?id=12307&period=582"
+  ],
+  "preloadAssets": [
+    {
+      "path": "assets/pano-01.jpg",
+      "bytes": 1639380
+    },
+    {
+      "path": "assets/pano-02.jpg",
+      "bytes": 1659442
+    },
+    {
+      "path": "assets/pano-03.jpg",
+      "bytes": 1660105
+    },
+    {
+      "path": "assets/pano-04.jpg",
+      "bytes": 1669434
+    },
+    {
+      "path": "assets/pano-05.jpg",
+      "bytes": 1671281
+    },
+    {
+      "path": "assets/pano-06.jpg",
+      "bytes": 1620165
+    },
+    {
+      "path": "assets/pano-07.jpg",
+      "bytes": 1270622
+    },
+    {
+      "path": "assets/pano-08.jpg",
+      "bytes": 1270804
+    },
+    {
+      "path": "assets/pano-09.jpg",
+      "bytes": 1583079
+    },
+    {
+      "path": "assets/pano-10.jpg",
+      "bytes": 1581812
+    },
+    {
+      "path": "assets/pano-11.jpg",
+      "bytes": 1437234
+    },
+    {
+      "path": "assets/pano-12.jpg",
+      "bytes": 1699579
+    },
+    {
+      "path": "assets/pano-13.jpg",
+      "bytes": 1490521
+    },
+    {
+      "path": "assets/pano-14.jpg",
+      "bytes": 1640375
+    },
+    {
+      "path": "assets/panels/holy-spirit-magazine.jpg",
+      "bytes": 357462
+    },
+    {
+      "path": "assets/panels/wen-xuan-timeline.jpg",
+      "bytes": 362973
+    },
+    {
+      "path": "assets/panels/wen-xuan-scroll-3.jpg",
+      "bytes": 2817143
+    },
+    {
+      "path": "assets/panels/wen-xuan-scroll-5.jpg",
+      "bytes": 2695370
+    },
+    {
+      "path": "assets/panels/wen-xuan-scroll-6.jpg",
+      "bytes": 2140572
+    },
+    {
+      "path": "assets/panels/wen-xuan-scroll-4.jpg",
+      "bytes": 2513739
+    },
+    {
+      "path": "assets/panels/wen-xuan-scroll-2.jpg",
+      "bytes": 2224206
+    },
+    {
+      "path": "assets/panels/wen-xuan-scroll-1.jpg",
+      "bytes": 3070699
+    },
+    {
+      "path": "assets/panels/wen-xuan-scroll-7.jpg",
+      "bytes": 1679847
+    },
+    {
+      "path": "assets/thumb-13.jpg",
+      "bytes": 57010
+    },
+    {
+      "path": "assets/thumb-14.jpg",
+      "bytes": 56704
+    },
+    {
+      "path": "assets/thumb-12.jpg",
+      "bytes": 58995
+    },
+    {
+      "path": "assets/thumb-06.jpg",
+      "bytes": 57156
+    },
+    {
+      "path": "assets/thumb-02.jpg",
+      "bytes": 61063
+    },
+    {
+      "path": "assets/thumb-04.jpg",
+      "bytes": 63490
+    },
+    {
+      "path": "assets/thumb-01.jpg",
+      "bytes": 52048
+    },
+    {
+      "path": "assets/thumb-09.jpg",
+      "bytes": 50779
+    },
+    {
+      "path": "assets/thumb-07.jpg",
+      "bytes": 46427
+    },
+    {
+      "path": "assets/thumb-11.jpg",
+      "bytes": 45570
+    }
   ]
 }

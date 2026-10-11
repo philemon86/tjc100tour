@@ -1,0 +1,1452 @@
+[
+  {
+    "church_name": "伸港",
+    "date": "1926-03-10",
+    "year": 1926
+  },
+  {
+    "church_name": "清水",
+    "date": "1926-04-05",
+    "year": 1926
+  },
+  {
+    "church_name": "臺中",
+    "date": "1926-10-28",
+    "year": 1926
+  },
+  {
+    "church_name": "臺南",
+    "date": "1927-04-27",
+    "year": 1927
+  },
+  {
+    "church_name": "民雄",
+    "date": "1929-04-23",
+    "year": 1929
+  },
+  {
+    "church_name": "大林",
+    "date": "1929-05-20",
+    "year": 1929
+  },
+  {
+    "church_name": "二林",
+    "date": "1929-05-27",
+    "year": 1929
+  },
+  {
+    "church_name": "新港",
+    "date": "1929-07-10",
+    "year": 1929
+  },
+  {
+    "church_name": "梅山",
+    "date": "1929-07-20",
+    "year": 1929
+  },
+  {
+    "church_name": "和美",
+    "date": "1929-11-01",
+    "year": 1929
+  },
+  {
+    "church_name": "新竹",
+    "date": "1930-09-01",
+    "year": 1930
+  },
+  {
+    "church_name": "嘉義",
+    "date": "1931-01-14",
+    "year": 1931
+  },
+  {
+    "church_name": "羅東",
+    "date": "1931-02-24",
+    "year": 1931
+  },
+  {
+    "church_name": "屏東",
+    "date": "1931-12-02",
+    "year": 1931
+  },
+  {
+    "church_name": "花蓮",
+    "date": "1935-04-07",
+    "year": 1935
+  },
+  {
+    "church_name": "崙尾",
+    "date": "1935-11-14",
+    "year": 1935
+  },
+  {
+    "church_name": "臺北",
+    "date": "1936-03-01",
+    "year": 1936
+  },
+  {
+    "church_name": "六合",
+    "date": "1938-01-10",
+    "year": 1938
+  },
+  {
+    "church_name": "溪湖",
+    "date": "1939-04-05",
+    "year": 1939
+  },
+  {
+    "church_name": "鹿港",
+    "date": "1940-11-14",
+    "year": 1940
+  },
+  {
+    "church_name": "富世",
+    "date": "1945-12-08",
+    "year": 1945
+  },
+  {
+    "church_name": "美和",
+    "date": "1946-01-19",
+    "year": 1946
+  },
+  {
+    "church_name": "玉里",
+    "date": "1946-05-16",
+    "year": 1946
+  },
+  {
+    "church_name": "山里",
+    "date": "1946-05-16",
+    "year": 1946
+  },
+  {
+    "church_name": "西林",
+    "date": "1946-05-17",
+    "year": 1946
+  },
+  {
+    "church_name": "立山",
+    "date": "1946-05-17",
+    "year": 1946
+  },
+  {
+    "church_name": "三棧",
+    "date": "1946-06-15",
+    "year": 1946
+  },
+  {
+    "church_name": "銅門",
+    "date": "1946-12-19",
+    "year": 1946
+  },
+  {
+    "church_name": "崇德",
+    "date": "1947-01-05",
+    "year": 1947
+  },
+  {
+    "church_name": "紅葉",
+    "date": "1947-01-05",
+    "year": 1947
+  },
+  {
+    "church_name": "成功",
+    "date": "1947-01-05",
+    "year": 1947
+  },
+  {
+    "church_name": "和平",
+    "date": "1947-01-05",
+    "year": 1947
+  },
+  {
+    "church_name": "隆昌",
+    "date": "1947-01-05",
+    "year": 1947
+  },
+  {
+    "church_name": "都蘭",
+    "date": "1947-01-05",
+    "year": 1947
+  },
+  {
+    "church_name": "虎尾",
+    "date": "1947-11-25",
+    "year": 1947
+  },
+  {
+    "church_name": "高雄",
+    "date": "1948-12-23",
+    "year": 1948
+  },
+  {
+    "church_name": "大橋",
+    "date": "1948-12-31",
+    "year": 1948
+  },
+  {
+    "church_name": "豐田",
+    "date": "1949-02-01",
+    "year": 1949
+  },
+  {
+    "church_name": "忠孝",
+    "date": "1950-01-06",
+    "year": 1950
+  },
+  {
+    "church_name": "三間",
+    "date": "1950-01-30",
+    "year": 1950
+  },
+  {
+    "church_name": "朴子",
+    "date": "1951-06-01",
+    "year": 1951
+  },
+  {
+    "church_name": "博愛",
+    "date": "1951-06-30",
+    "year": 1951
+  },
+  {
+    "church_name": "克來寶",
+    "date": "1951-12-12",
+    "year": 1951
+  },
+  {
+    "church_name": "南澳",
+    "date": "1952-08-23",
+    "year": 1952
+  },
+  {
+    "church_name": "平和",
+    "date": "1952-12-31",
+    "year": 1952
+  },
+  {
+    "church_name": "大俱來",
+    "date": "1952-12-31",
+    "year": 1952
+  },
+  {
+    "church_name": "重安",
+    "date": "1952-12-31",
+    "year": 1952
+  },
+  {
+    "church_name": "芝田",
+    "date": "1952-12-31",
+    "year": 1952
+  },
+  {
+    "church_name": "瑞源",
+    "date": "1952-12-31",
+    "year": 1952
+  },
+  {
+    "church_name": "月美",
+    "date": "1952-12-31",
+    "year": 1952
+  },
+  {
+    "church_name": "自由",
+    "date": "1952-12-31",
+    "year": 1952
+  },
+  {
+    "church_name": "碧候",
+    "date": "1953-11-27",
+    "year": 1953
+  },
+  {
+    "church_name": "精英",
+    "date": "1953-11-27",
+    "year": 1953
+  },
+  {
+    "church_name": "美山",
+    "date": "1953-12-31",
+    "year": 1953
+  },
+  {
+    "church_name": "南勢",
+    "date": "1953-12-31",
+    "year": 1953
+  },
+  {
+    "church_name": "裡冷",
+    "date": "1953-12-31",
+    "year": 1953
+  },
+  {
+    "church_name": "金洋祈禱所",
+    "date": "1954-10-01",
+    "year": 1954
+  },
+  {
+    "church_name": "豐南",
+    "date": "1954-12-19",
+    "year": 1954
+  },
+  {
+    "church_name": "新美",
+    "date": "1954-12-31",
+    "year": 1954
+  },
+  {
+    "church_name": "新山",
+    "date": "1954-12-31",
+    "year": 1954
+  },
+  {
+    "church_name": "三仙",
+    "date": "1954-12-31",
+    "year": 1954
+  },
+  {
+    "church_name": "廬山",
+    "date": "1954-12-31",
+    "year": 1954
+  },
+  {
+    "church_name": "華源",
+    "date": "1955-12-20",
+    "year": 1955
+  },
+  {
+    "church_name": "五峰",
+    "date": "1955-12-29",
+    "year": 1955
+  },
+  {
+    "church_name": "東江",
+    "date": "1955-12-29",
+    "year": 1955
+  },
+  {
+    "church_name": "三重",
+    "date": "1956-01-27",
+    "year": 1956
+  },
+  {
+    "church_name": "南華",
+    "date": "1956-02-10",
+    "year": 1956
+  },
+  {
+    "church_name": "望美",
+    "date": "1956-03-15",
+    "year": 1956
+  },
+  {
+    "church_name": "忠勇",
+    "date": "1956-05-01",
+    "year": 1956
+  },
+  {
+    "church_name": "樂野",
+    "date": "1956-08-25",
+    "year": 1956
+  },
+  {
+    "church_name": "月眉",
+    "date": "1956-10-01",
+    "year": 1956
+  },
+  {
+    "church_name": "小馬",
+    "date": "1956-10-03",
+    "year": 1956
+  },
+  {
+    "church_name": "田組",
+    "date": "1956-10-17",
+    "year": 1956
+  },
+  {
+    "church_name": "新社",
+    "date": "1956-10-25",
+    "year": 1956
+  },
+  {
+    "church_name": "新生",
+    "date": "1956-10-25",
+    "year": 1956
+  },
+  {
+    "church_name": "芳寮",
+    "date": "1956-10-28",
+    "year": 1956
+  },
+  {
+    "church_name": "麻豆",
+    "date": "1956-12-01",
+    "year": 1956
+  },
+  {
+    "church_name": "武塔",
+    "date": "1956-12-01",
+    "year": 1956
+  },
+  {
+    "church_name": "竹湖",
+    "date": "1956-12-01",
+    "year": 1956
+  },
+  {
+    "church_name": "石川",
+    "date": "1956-12-01",
+    "year": 1956
+  },
+  {
+    "church_name": "力行",
+    "date": "1956-12-01",
+    "year": 1956
+  },
+  {
+    "church_name": "親愛",
+    "date": "1956-12-01",
+    "year": 1956
+  },
+  {
+    "church_name": "春陽",
+    "date": "1956-12-01",
+    "year": 1956
+  },
+  {
+    "church_name": "美蘭",
+    "date": "1957-04-04",
+    "year": 1957
+  },
+  {
+    "church_name": "磯崎",
+    "date": "1957-09-03",
+    "year": 1957
+  },
+  {
+    "church_name": "慈峰",
+    "date": "1957-11-26",
+    "year": 1957
+  },
+  {
+    "church_name": "東河祈禱所",
+    "date": "1958-04-20",
+    "year": 1958
+  },
+  {
+    "church_name": "真柄",
+    "date": "1958-04-26",
+    "year": 1958
+  },
+  {
+    "church_name": "塭仔",
+    "date": "1958-07-04",
+    "year": 1958
+  },
+  {
+    "church_name": "紅香",
+    "date": "1958-12-31",
+    "year": 1958
+  },
+  {
+    "church_name": "彰化",
+    "date": "1959-05-23",
+    "year": 1959
+  },
+  {
+    "church_name": "雙崎",
+    "date": "1959-10-17",
+    "year": 1959
+  },
+  {
+    "church_name": "里佳",
+    "date": "1959-11-10",
+    "year": 1959
+  },
+  {
+    "church_name": "南富",
+    "date": "1959-12-31",
+    "year": 1959
+  },
+  {
+    "church_name": "萬寧",
+    "date": "1959-12-31",
+    "year": 1959
+  },
+  {
+    "church_name": "靜浦",
+    "date": "1959-12-31",
+    "year": 1959
+  },
+  {
+    "church_name": "南溪",
+    "date": "1959-12-31",
+    "year": 1959
+  },
+  {
+    "church_name": "土庫",
+    "date": "1960-05-20",
+    "year": 1960
+  },
+  {
+    "church_name": "北港",
+    "date": "1960-05-20",
+    "year": 1960
+  },
+  {
+    "church_name": "金崙",
+    "date": "1960-05-20",
+    "year": 1960
+  },
+  {
+    "church_name": "德高",
+    "date": "1960-05-20",
+    "year": 1960
+  },
+  {
+    "church_name": "內埔",
+    "date": "1960-08-21",
+    "year": 1960
+  },
+  {
+    "church_name": "四股",
+    "date": "1961-03-08",
+    "year": 1961
+  },
+  {
+    "church_name": "大同",
+    "date": "1961-10-28",
+    "year": 1961
+  },
+  {
+    "church_name": "卓蘭",
+    "date": "1961-12-30",
+    "year": 1961
+  },
+  {
+    "church_name": "竹坑祈禱所",
+    "date": "1961-12-30",
+    "year": 1961
+  },
+  {
+    "church_name": "雪霧鬧",
+    "date": "1961-12-31",
+    "year": 1961
+  },
+  {
+    "church_name": "義盛",
+    "date": "1962-12-01",
+    "year": 1962
+  },
+  {
+    "church_name": "大灣",
+    "date": "1962-12-01",
+    "year": 1962
+  },
+  {
+    "church_name": "古樓",
+    "date": "1963-01-01",
+    "year": 1963
+  },
+  {
+    "church_name": "清泉",
+    "date": "1963-02-01",
+    "year": 1963
+  },
+  {
+    "church_name": "永安",
+    "date": "1963-02-01",
+    "year": 1963
+  },
+  {
+    "church_name": "復興",
+    "date": "1963-08-01",
+    "year": 1963
+  },
+  {
+    "church_name": "烏龍",
+    "date": "1964-07-20",
+    "year": 1964
+  },
+  {
+    "church_name": "上巴陵",
+    "date": "1964-09-01",
+    "year": 1964
+  },
+  {
+    "church_name": "士林",
+    "date": "1965-08-01",
+    "year": 1965
+  },
+  {
+    "church_name": "草港",
+    "date": "1965-09-01",
+    "year": 1965
+  },
+  {
+    "church_name": "環山",
+    "date": "1965-09-01",
+    "year": 1965
+  },
+  {
+    "church_name": "基隆",
+    "date": "1965-12-31",
+    "year": 1965
+  },
+  {
+    "church_name": "達邦",
+    "date": "1965-12-31",
+    "year": 1965
+  },
+  {
+    "church_name": "光華",
+    "date": "1965-12-31",
+    "year": 1965
+  },
+  {
+    "church_name": "中壢",
+    "date": "1967-03-21",
+    "year": 1967
+  },
+  {
+    "church_name": "大德",
+    "date": "1967-12-20",
+    "year": 1967
+  },
+  {
+    "church_name": "翠巒",
+    "date": "1967-12-20",
+    "year": 1967
+  },
+  {
+    "church_name": "南門",
+    "date": "1968-04-13",
+    "year": 1968
+  },
+  {
+    "church_name": "太麻里",
+    "date": "1968-09-25",
+    "year": 1968
+  },
+  {
+    "church_name": "漁橋",
+    "date": "1968-12-01",
+    "year": 1968
+  },
+  {
+    "church_name": "三光",
+    "date": "1968-12-31",
+    "year": 1968
+  },
+  {
+    "church_name": "永和",
+    "date": "1969-08-01",
+    "year": 1969
+  },
+  {
+    "church_name": "東園",
+    "date": "1969-08-01",
+    "year": 1969
+  },
+  {
+    "church_name": "霞雲祈禱所",
+    "date": "1969-12-01",
+    "year": 1969
+  },
+  {
+    "church_name": "新營",
+    "date": "1970-03-20",
+    "year": 1970
+  },
+  {
+    "church_name": "達觀",
+    "date": "1970-04-01",
+    "year": 1970
+  },
+  {
+    "church_name": "北投",
+    "date": "1970-07-01",
+    "year": 1970
+  },
+  {
+    "church_name": "埔里",
+    "date": "1970-07-01",
+    "year": 1970
+  },
+  {
+    "church_name": "北興",
+    "date": "1970-07-01",
+    "year": 1970
+  },
+  {
+    "church_name": "八邊",
+    "date": "1971-04-16",
+    "year": 1971
+  },
+  {
+    "church_name": "義興",
+    "date": "1971-06-16",
+    "year": 1971
+  },
+  {
+    "church_name": "桃山",
+    "date": "1971-12-30",
+    "year": 1971
+  },
+  {
+    "church_name": "德安",
+    "date": "1972-07-01",
+    "year": 1972
+  },
+  {
+    "church_name": "鹽濱",
+    "date": "1972-12-31",
+    "year": 1972
+  },
+  {
+    "church_name": "中巴陵",
+    "date": "1973-03-25",
+    "year": 1973
+  },
+  {
+    "church_name": "淡水",
+    "date": "1973-05-03",
+    "year": 1973
+  },
+  {
+    "church_name": "二重",
+    "date": "1973-10-01",
+    "year": 1973
+  },
+  {
+    "church_name": "嘉平",
+    "date": "1973-11-11",
+    "year": 1973
+  },
+  {
+    "church_name": "茶山",
+    "date": "1973-12-31",
+    "year": 1973
+  },
+  {
+    "church_name": "池上",
+    "date": "1974-02-25",
+    "year": 1974
+  },
+  {
+    "church_name": "松山",
+    "date": "1974-11-20",
+    "year": 1974
+  },
+  {
+    "church_name": "板橋",
+    "date": "1974-12-01",
+    "year": 1974
+  },
+  {
+    "church_name": "豐原",
+    "date": "1974-12-28",
+    "year": 1974
+  },
+  {
+    "church_name": "前鎮",
+    "date": "1975-04-01",
+    "year": 1975
+  },
+  {
+    "church_name": "桃園",
+    "date": "1975-07-01",
+    "year": 1975
+  },
+  {
+    "church_name": "苗栗",
+    "date": "1975-07-01",
+    "year": 1975
+  },
+  {
+    "church_name": "基督仁愛之家",
+    "date": "1975-09-26",
+    "year": 1975
+  },
+  {
+    "church_name": "岡山",
+    "date": "1975-11-01",
+    "year": 1975
+  },
+  {
+    "church_name": "楠梓",
+    "date": "1975-12-01",
+    "year": 1975
+  },
+  {
+    "church_name": "開元",
+    "date": "1976-01-01",
+    "year": 1976
+  },
+  {
+    "church_name": "八斗",
+    "date": "1976-03-01",
+    "year": 1976
+  },
+  {
+    "church_name": "蘆洲",
+    "date": "1976-05-01",
+    "year": 1976
+  },
+  {
+    "church_name": "員林",
+    "date": "1976-05-01",
+    "year": 1976
+  },
+  {
+    "church_name": "斗南",
+    "date": "1976-07-01",
+    "year": 1976
+  },
+  {
+    "church_name": "十全",
+    "date": "1976-12-01",
+    "year": 1976
+  },
+  {
+    "church_name": "民生",
+    "date": "1976-12-18",
+    "year": 1976
+  },
+  {
+    "church_name": "忠智",
+    "date": "1976-12-25",
+    "year": 1976
+  },
+  {
+    "church_name": "馬公祈禱所",
+    "date": "1977-01-25",
+    "year": 1977
+  },
+  {
+    "church_name": "石牌",
+    "date": "1977-08-01",
+    "year": 1977
+  },
+  {
+    "church_name": "大安祈禱所",
+    "date": "1977-11-10",
+    "year": 1977
+  },
+  {
+    "church_name": "南臺中",
+    "date": "1978-03-01",
+    "year": 1978
+  },
+  {
+    "church_name": "分子尾",
+    "date": "1978-04-05",
+    "year": 1978
+  },
+  {
+    "church_name": "雙連",
+    "date": "1978-04-10",
+    "year": 1978
+  },
+  {
+    "church_name": "東勢",
+    "date": "1978-07-01",
+    "year": 1978
+  },
+  {
+    "church_name": "景美",
+    "date": "1978-07-15",
+    "year": 1978
+  },
+  {
+    "church_name": "新莊",
+    "date": "1978-07-15",
+    "year": 1978
+  },
+  {
+    "church_name": "樹林",
+    "date": "1978-07-15",
+    "year": 1978
+  },
+  {
+    "church_name": "豐坪",
+    "date": "1978-10-01",
+    "year": 1978
+  },
+  {
+    "church_name": "西臺中",
+    "date": "1979-07-01",
+    "year": 1979
+  },
+  {
+    "church_name": "鳳山",
+    "date": "1980-07-01",
+    "year": 1980
+  },
+  {
+    "church_name": "西門",
+    "date": "1980-08-01",
+    "year": 1980
+  },
+  {
+    "church_name": "加灣祈禱所",
+    "date": "1980-09-07",
+    "year": 1980
+  },
+  {
+    "church_name": "奎輝祈禱所",
+    "date": "1980-10-08",
+    "year": 1980
+  },
+  {
+    "church_name": "中和",
+    "date": "1981-07-01",
+    "year": 1981
+  },
+  {
+    "church_name": "潮州",
+    "date": "1981-07-19",
+    "year": 1981
+  },
+  {
+    "church_name": "東昇",
+    "date": "1981-08-01",
+    "year": 1981
+  },
+  {
+    "church_name": "內壢",
+    "date": "1981-11-01",
+    "year": 1981
+  },
+  {
+    "church_name": "花園",
+    "date": "1981-11-01",
+    "year": 1981
+  },
+  {
+    "church_name": "五甲",
+    "date": "1982-06-01",
+    "year": 1982
+  },
+  {
+    "church_name": "沙鹿",
+    "date": "1982-07-01",
+    "year": 1982
+  },
+  {
+    "church_name": "灣橋",
+    "date": "1982-07-01",
+    "year": 1982
+  },
+  {
+    "church_name": "新埔",
+    "date": "1982-08-01",
+    "year": 1982
+  },
+  {
+    "church_name": "鶯歌",
+    "date": "1982-08-01",
+    "year": 1982
+  },
+  {
+    "church_name": "莒光",
+    "date": "1983-08-16",
+    "year": 1983
+  },
+  {
+    "church_name": "金岳",
+    "date": "1983-10-10",
+    "year": 1983
+  },
+  {
+    "church_name": "卡普祈禱所",
+    "date": "1983-10-28",
+    "year": 1983
+  },
+  {
+    "church_name": "小港",
+    "date": "1984-01-01",
+    "year": 1984
+  },
+  {
+    "church_name": "山佳",
+    "date": "1984-03-01",
+    "year": 1984
+  },
+  {
+    "church_name": "內湖",
+    "date": "1984-06-01",
+    "year": 1984
+  },
+  {
+    "church_name": "南興",
+    "date": "1984-07-01",
+    "year": 1984
+  },
+  {
+    "church_name": "彰興",
+    "date": "1984-09-01",
+    "year": 1984
+  },
+  {
+    "church_name": "崎頂",
+    "date": "1985-01-01",
+    "year": 1985
+  },
+  {
+    "church_name": "高臺",
+    "date": "1986-01-01",
+    "year": 1986
+  },
+  {
+    "church_name": "太平",
+    "date": "1986-05-01",
+    "year": 1986
+  },
+  {
+    "church_name": "南投",
+    "date": "1986-05-01",
+    "year": 1986
+  },
+  {
+    "church_name": "一聖",
+    "date": "1987-04-01",
+    "year": 1987
+  },
+  {
+    "church_name": "竹東",
+    "date": "1987-04-01",
+    "year": 1987
+  },
+  {
+    "church_name": "白沙",
+    "date": "1987-06-01",
+    "year": 1987
+  },
+  {
+    "church_name": "仁愛",
+    "date": "1988-01-10",
+    "year": 1988
+  },
+  {
+    "church_name": "土城",
+    "date": "1988-04-01",
+    "year": 1988
+  },
+  {
+    "church_name": "關東橋",
+    "date": "1988-10-06",
+    "year": 1988
+  },
+  {
+    "church_name": "三多",
+    "date": "1989-05-14",
+    "year": 1989
+  },
+  {
+    "church_name": "斗六",
+    "date": "1990-01-20",
+    "year": 1990
+  },
+  {
+    "church_name": "民權",
+    "date": "1990-01-20",
+    "year": 1990
+  },
+  {
+    "church_name": "良溪",
+    "date": "1990-04-01",
+    "year": 1990
+  },
+  {
+    "church_name": "豐泉",
+    "date": "1990-05-01",
+    "year": 1990
+  },
+  {
+    "church_name": "自強",
+    "date": "1991-01-01",
+    "year": 1991
+  },
+  {
+    "church_name": "五股",
+    "date": "1991-05-05",
+    "year": 1991
+  },
+  {
+    "church_name": "花壇",
+    "date": "1991-07-21",
+    "year": 1991
+  },
+  {
+    "church_name": "大溪",
+    "date": "1991-09-21",
+    "year": 1991
+  },
+  {
+    "church_name": "北臺中",
+    "date": "1993-02-21",
+    "year": 1993
+  },
+  {
+    "church_name": "錦屏",
+    "date": "1993-07-01",
+    "year": 1993
+  },
+  {
+    "church_name": "萬里",
+    "date": "1993-12-01",
+    "year": 1993
+  },
+  {
+    "church_name": "內新",
+    "date": "1994-05-01",
+    "year": 1994
+  },
+  {
+    "church_name": "永康",
+    "date": "1994-09-01",
+    "year": 1994
+  },
+  {
+    "church_name": "歸仁",
+    "date": "1995-07-01",
+    "year": 1995
+  },
+  {
+    "church_name": "宜蘭",
+    "date": "1995-07-01",
+    "year": 1995
+  },
+  {
+    "church_name": "北埔",
+    "date": "1996-06-02",
+    "year": 1996
+  },
+  {
+    "church_name": "布袋祈禱所",
+    "date": "1997-06-03",
+    "year": 1997
+  },
+  {
+    "church_name": "後埔",
+    "date": "1997-08-31",
+    "year": 1997
+  },
+  {
+    "church_name": "安康",
+    "date": "1997-11-12",
+    "year": 1997
+  },
+  {
+    "church_name": "汐止",
+    "date": "1999-06-01",
+    "year": 1999
+  },
+  {
+    "church_name": "南崁",
+    "date": "1999-06-13",
+    "year": 1999
+  },
+  {
+    "church_name": "南勢角",
+    "date": "2000-01-02",
+    "year": 2000
+  },
+  {
+    "church_name": "龍潭",
+    "date": "2000-04-09",
+    "year": 2000
+  },
+  {
+    "church_name": "南港",
+    "date": "2001-02-04",
+    "year": 2001
+  },
+  {
+    "church_name": "大園",
+    "date": "2002-01-01",
+    "year": 2002
+  },
+  {
+    "church_name": "銅光",
+    "date": "2002-01-01",
+    "year": 2002
+  },
+  {
+    "church_name": "南寮",
+    "date": "2002-03-31",
+    "year": 2002
+  },
+  {
+    "church_name": "漁人祈禱所",
+    "date": "2002-05-08",
+    "year": 2002
+  },
+  {
+    "church_name": "林口",
+    "date": "2002-12-01",
+    "year": 2002
+  },
+  {
+    "church_name": "木柵",
+    "date": "2003-01-01",
+    "year": 2003
+  },
+  {
+    "church_name": "東光",
+    "date": "2003-04-01",
+    "year": 2003
+  },
+  {
+    "church_name": "延平祈禱所",
+    "date": "2003-06-08",
+    "year": 2003
+  },
+  {
+    "church_name": "永福",
+    "date": "2004-01-01",
+    "year": 2004
+  },
+  {
+    "church_name": "頭份",
+    "date": "2004-03-01",
+    "year": 2004
+  },
+  {
+    "church_name": "黎明",
+    "date": "2006-01-01",
+    "year": 2006
+  },
+  {
+    "church_name": "和順",
+    "date": "2007-01-01",
+    "year": 2007
+  },
+  {
+    "church_name": "馬祖祈禱所-南竿",
+    "date": "2007-03-01",
+    "year": 2007
+  },
+  {
+    "church_name": "三芝祈禱所",
+    "date": "2007-05-25",
+    "year": 2007
+  },
+  {
+    "church_name": "椬梧",
+    "date": "2008-04-13",
+    "year": 2008
+  },
+  {
+    "church_name": "龜山",
+    "date": "2008-05-18",
+    "year": 2008
+  },
+  {
+    "church_name": "枋寮祈禱所",
+    "date": "2009-01-01",
+    "year": 2009
+  },
+  {
+    "church_name": "那羅",
+    "date": "2009-01-01",
+    "year": 2009
+  },
+  {
+    "church_name": "烏來祈禱所",
+    "date": "2009-01-10",
+    "year": 2009
+  },
+  {
+    "church_name": "大雅",
+    "date": "2010-01-01",
+    "year": 2010
+  },
+  {
+    "church_name": "鹽寮祈禱所",
+    "date": "2010-08-09",
+    "year": 2010
+  },
+  {
+    "church_name": "建農祈禱所",
+    "date": "2010-12-06",
+    "year": 2010
+  },
+  {
+    "church_name": "鹿和",
+    "date": "2011-01-01",
+    "year": 2011
+  },
+  {
+    "church_name": "八德",
+    "date": "2011-01-01",
+    "year": 2011
+  },
+  {
+    "church_name": "豐榮",
+    "date": "2012-10-28",
+    "year": 2012
+  },
+  {
+    "church_name": "北桃園",
+    "date": "2013-01-01",
+    "year": 2013
+  },
+  {
+    "church_name": "三峽",
+    "date": "2014-01-01",
+    "year": 2014
+  },
+  {
+    "church_name": "喜樹",
+    "date": "2014-01-01",
+    "year": 2014
+  },
+  {
+    "church_name": "竹圍祈禱所",
+    "date": "2015-01-01",
+    "year": 2015
+  },
+  {
+    "church_name": "觸口",
+    "date": "2017-04-09",
+    "year": 2017
+  },
+  {
+    "church_name": "尖石祈禱所",
+    "date": "2018-01-01",
+    "year": 2018
+  },
+  {
+    "church_name": "楊梅祈禱所",
+    "date": "2018-06-03",
+    "year": 2018
+  },
+  {
+    "church_name": "福營祈禱所",
+    "date": "2018-07-02",
+    "year": 2018
+  },
+  {
+    "church_name": "迦美",
+    "date": "2019-03-27",
+    "year": 2019
+  },
+  {
+    "church_name": "三興",
+    "date": "2020-03-06",
+    "year": 2020
+  },
+  {
+    "church_name": "烏日祈禱所",
+    "date": "2020-07-01",
+    "year": 2020
+  },
+  {
+    "church_name": "天母",
+    "date": "2020-11-01",
+    "year": 2020
+  },
+  {
+    "church_name": "順安",
+    "date": "2020-11-01",
+    "year": 2020
+  },
+  {
+    "church_name": "杉林",
+    "date": "2021-10-10",
+    "year": 2021
+  },
+  {
+    "church_name": "湖口祈禱所",
+    "date": "2022-01-02",
+    "year": 2022
+  },
+  {
+    "church_name": "松羅祈禱所",
+    "date": "2022-04-12",
+    "year": 2022
+  },
+  {
+    "church_name": "大興",
+    "date": "2022-04-12",
+    "year": 2022
+  },
+  {
+    "church_name": "竹林祈禱所",
+    "date": "2022-07-05",
+    "year": 2022
+  },
+  {
+    "church_name": "竹北",
+    "date": "2022-09-01",
+    "year": 2022
+  },
+  {
+    "church_name": "南新竹",
+    "date": "2022-09-01",
+    "year": 2022
+  },
+  {
+    "church_name": "綠島福音中心",
+    "date": "2022-09-22",
+    "year": 2022
+  },
+  {
+    "church_name": "關西",
+    "date": "2022-10-01",
+    "year": 2022
+  },
+  {
+    "church_name": "寶來祈禱所",
+    "date": "2023-05-02",
+    "year": 2023
+  },
+  {
+    "church_name": "信義",
+    "date": "2023-11-12",
+    "year": 2023
+  },
+  {
+    "church_name": "芎林祈禱所",
+    "date": "2024-03-05",
+    "year": 2024
+  },
+  {
+    "church_name": "橫山祈禱所",
+    "date": "2024-06-15",
+    "year": 2024
+  },
+  {
+    "church_name": "嘉北",
+    "date": "2024-08-20",
+    "year": 2024
+  },
+  {
+    "church_name": "金門",
+    "date": "2024-08-23",
+    "year": 2024
+  },
+  {
+    "church_name": "新林",
+    "date": "2025-07-20",
+    "year": 2025
+  },
+  {
+    "church_name": "八里祈禱所",
+    "date": "2026-02-03",
+    "year": 2026
+  },
+  {
+    "church_name": "深坑福音中心",
+    "date": "2026-06-10",
+    "year": 2026
+  },
+  {
+    "church_name": "新豐福音中心",
+    "date": "2026-07-14",
+    "year": 2026
+  }
+]

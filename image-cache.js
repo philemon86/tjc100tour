@@ -1,7 +1,7 @@
 (function (root) {
   'use strict';
 
-  function createCache({limit = 3, onEvict} = {}) {
+  function createCache({limit = 3, onEvict, resolveSource = path => path} = {}) {
     if (!Number.isInteger(limit) || limit < 1) throw new RangeError('Image cache limit must be a positive integer.');
     const entries = new Map();
     let protectedPath = null;
@@ -75,7 +75,8 @@
       entries.set(path,entry);
       image.onload = () => { void decoded(entry); };
       image.onerror = () => fail(entry,new Error('Image could not be loaded: ' + path));
-      image.src = path;
+      try { image.src = resolveSource(path); }
+      catch (error) { fail(entry,error); }
       return entry.promise;
     }
 

@@ -6,21 +6,71 @@ let sceneLoading = true, pendingScene = null;
 let loadingScene = null, preparingScene = null, navigationRequest = 0;
 let panelRequest = 0;
 let panelLoadPath = null, prefetchTimer = null;
-const assetVersion = '20261011-fast1';
+let startupBusy = false, churchYears = [];
+const assetVersion = '20261011-original1';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile = window.matchMedia('(max-width: 720px)').matches;
-const panoramaPath = (scene) => mobile || navigator.connection?.saveData ? scene.lowImage : scene.image;
-const panelPath = (panel) => (mobile || navigator.connection?.saveData ? panel.smallImage : panel.readingImage) || panel.path;
+const panoramaPath = (scene) => scene.image;
+const panelPath = (panel) => panel.path;
+const assetStore = TourAssets.createStore({concurrency:mobile ? 2 : 3});
 const sceneConfigs = {};
 const sceneImageLimit = mobile || navigator.connection?.saveData ? 2 : 3;
-const sceneImages = TourImages.createCache({limit:sceneImageLimit,onEvict(path) {
+const sceneImages = TourImages.createCache({limit:sceneImageLimit,resolveSource:path => assetStore.source(path),onEvict(path) {
   for (const scene of Object.values(sceneConfigs)) if (scene.panorama === path) scene.preloadedImage = null;
 }});
-const panelImages = TourImages.createCache({limit:2});
+const panelImages = TourImages.createCache({limit:2,resolveSource:path => assetStore.source(path)});
 const formatTime = (n) => Number.isFinite(n) ? `${String(Math.floor(n / 60)).padStart(2,'0')}:${String(Math.floor(n % 60)).padStart(2,'0')}` : '--:--';
 const iconArrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6M12 8v12"/></svg>';
 const iconInfo = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10v7"/><circle cx="12" cy="6.5" r=".5" fill="currentColor"/></svg>';
 const setText = (id,text) => { $(id).textContent = text; };
+
+function showStartupProgress({loaded,total,completed,count}) {
+  const fraction = total > 0 ? Math.min(1,loaded / total) : 0;
+  const percent = Math.floor(fraction * 100);
+  $('startup-progress').value = percent;
+  setText('startup-percent',percent + '%');
+  setText('startup-count',`已下載 ${completed} / ${count} 張圖片`);
+  const group = churchYears[Math.min(churchYears.length - 1,Math.floor(fraction * (churchYears.length - 1)))];
+  if (group && $('startup-year').textContent !== String(group.year)) {
+    setText('startup-year',String(group.year));
+    const list = $('startup-churches');
+    list.replaceChildren();
+    for (const church of group.churches) {
+      const item = document.createElement('li');
+      item.textContent = church.church_name + ' · ' + church.date.replaceAll('-','.');
+      list.append(item);
+    }
+  }
+  // Announce completion and errors, rather than every downloaded chunk.
+  if (completed === count && count > 0) setText('startup-message','圖片已下載完成，正在開啟展廳。');
+}
+
+function completeStartup() {
+  $('startup-loading').hidden = true;
+  $('site-content').inert = false;
+  $('site-content').removeAttribute('inert');
+  $('site-content').setAttribute('aria-busy','false');
+  document.body.classList.remove('preparing-tour');
+}
+
+async function startTour() {
+  if (startupBusy) return;
+  startupBusy = true;
+  $('startup-retry').hidden = true;
+  $('startup-loading').dataset.state = 'loading';
+  $('startup-message').setAttribute('role','status');
+  setText('startup-message','正在預先下載清晰圖片，完成後自動進入展廳。');
+  try { await init(); }
+  catch (error) {
+    $('startup-loading').dataset.state = 'error';
+    $('startup-message').setAttribute('role','alert');
+    setText('startup-message','圖片準備尚未完成，請確認連線後重試；已下載的圖片會保留。');
+    $('startup-retry').hidden = false;
+    console.error(error);
+  } finally { startupBusy = false; }
+}
+$('startup-retry').addEventListener('click',startTour);
+window.addEventListener('pagehide',event => { if (!event.persisted) assetStore.dispose(); });
 
 function showViewerStatus(message, state = 'loading') {
   ui.status.textContent = message;
@@ -38,7 +88,7 @@ function clearViewerStatus() {
 
 function showFallbackPhoto(id, message) {
   const image = $('fallback-image');
-  image.src = panoramaPath(data.scenes[id]);
+  image.src = assetStore.source(panoramaPath(data.scenes[id]));
   image.alt = data.scenes[id].title + '全景照片';
   image.hidden = false;
   showViewerStatus(message,'error');
@@ -310,15 +360,29 @@ $('panel-dialog').addEventListener('close',() => {
 });
 
 async function init() {
-  const response = await fetch('data.json?v=' + assetVersion);
-  if (!response.ok) throw new Error('無法讀取導覽資料');
+  const [response,churchResponse] = await Promise.all([fetch('data.json?v=' + assetVersion),fetch('church-history.json?v=' + assetVersion)]);
+  if (!response.ok || !churchResponse.ok) throw new Error('無法讀取導覽資料');
   data = await response.json();
+  const churches = await churchResponse.json();
+  const years = new Map();
+  for (const church of churches) {
+    if (!years.has(church.year)) years.set(church.year,[]);
+    years.get(church.year).push(church);
+  }
+  churchYears = [...years].sort(([a],[b]) => a - b).map(([year,items]) => ({year,churches:items}));
+  if (!churchYears.length) throw new Error('教會建立年代未能載入');
+  setText('startup-first-year',String(churchYears[0].year));
+  setText('startup-last-year',String(churchYears.at(-1).year));
+  // Use real downloaded bytes to move through the supplied establishment years.
+  setText('startup-year','');
+  showStartupProgress({loaded:0,total:data.preloadAssets.reduce((sum,item) => sum + item.bytes,0),completed:0,count:data.preloadAssets.length});
+  await assetStore.preload(data.preloadAssets,showStartupProgress);
   // All paths are local; the site does not depend on Google Drive download tokens.
   data.route.forEach((id,index) => {
     const scene = data.scenes[id];
     const button = document.createElement('button');
     button.className = 'scene-card'; button.dataset.scene = id;
-    const image = document.createElement('img'); image.src = scene.thumb; image.alt = scene.title + '實景縮圖'; image.loading = 'lazy'; image.decoding = 'async'; image.fetchPriority = 'low';
+    const image = document.createElement('img'); image.src = assetStore.source(scene.thumb); image.alt = scene.title + '實景縮圖'; image.loading = 'lazy'; image.decoding = 'async'; image.fetchPriority = 'low';
     const label = document.createElement('span'); label.className = 'scene-card-label';
     const number = document.createElement('span'); number.textContent = String(index+1).padStart(2,'0');
     const title = document.createElement('strong'); title.textContent = scene.title;
@@ -358,15 +422,16 @@ async function init() {
       sceneImages.protect(panoramaPath(data.scenes[id]));
       updateScene(id);
       clearViewerStatus(); loadFailed = false; sceneLoading = false; loadingScene = null; $('fallback-image').hidden = true;
+      completeStartup();
       const next = pendingScene; pendingScene = null;
       if (next && next !== currentScene) goToScene(next);
       else prefetchNextScene(currentScene);
     });
     viewer.on('scenechange',id => { loadingScene = id; ui.audio.pause(); stopRotation(); });
-    viewer.on('error',message => { const id = loadingScene || viewer.getScene() || currentScene; ++navigationRequest; loadFailed = true; sceneLoading = false; loadingScene = preparingScene = pendingScene = null; updateScene(id); showFallbackPhoto(id,'360°全景暫時無法顯示，目前顯示照片；可重新整理重試，或繼續選擇展區與聆聽語音。'); console.warn(message); });
+    viewer.on('error',message => { const id = loadingScene || viewer.getScene() || currentScene; ++navigationRequest; loadFailed = true; sceneLoading = false; loadingScene = preparingScene = pendingScene = null; updateScene(id); showFallbackPhoto(id,'360°全景暫時無法顯示，目前顯示照片；可重新整理重試，或繼續選擇展區與聆聽語音。'); completeStartup(); console.warn(message); });
     viewer.on('mousedown',() => { stopRotation(); $('drag-tip').style.opacity = '.65'; });
     viewer.on('touchstart',stopRotation);
-  } catch (error) { loadFailed = true; sceneLoading = false; showFallbackPhoto(currentScene,'360°全景暫時無法啟動，目前顯示照片；可重新整理重試，或以展區選單繼續參觀。'); console.error(error); }
+  } catch (error) { loadFailed = true; sceneLoading = false; showFallbackPhoto(currentScene,'360°全景暫時無法啟動，目前顯示照片；可重新整理重試，或以展區選單繼續參觀。'); completeStartup(); console.error(error); }
   updateScene(currentScene);
   showTab(startHistory?'history':'tour');
 }
@@ -379,4 +444,4 @@ window.addEventListener('hashchange',() => {
     if (id !== currentScene && data.scenes[id]) goToScene(id);
   }
 });
-init().catch(error => { sceneLoading = false; showViewerStatus('導覽資料未能載入，請重新整理頁面。','error'); console.error(error); });
+void startTour();
