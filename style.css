@@ -27,11 +27,11 @@ svg { width:21px; height:21px; fill:none; stroke:currentColor; stroke-width:1.6;
 body.preparing-tour { overflow:hidden; }
 .startup-loading { position:fixed; inset:0; z-index:200; background:var(--paper); overflow:auto; display:grid; align-items:center; padding:32px 24px; }
 .startup-card { width:min(100%,580px); margin:auto; text-align:center; }
-.startup-brand { font:20px/1.5 var(--serif); font-weight:400; letter-spacing:5px; margin:0 0 52px; }
+.startup-brand { font:20px/1.5 var(--serif); font-weight:400; letter-spacing:5px; margin:0 0 28px; }
 .startup-history-label { font-size:10px; color:var(--muted); letter-spacing:3px; margin:0; }
-.startup-year { font:112px/1.1 Georgia,serif; letter-spacing:1px; color:var(--accent-deep); margin:10px 0 22px; font-variant-numeric:lining-nums tabular-nums; }
-.startup-churches { list-style:none; padding:0; margin:0 auto 38px; display:flex; flex-wrap:wrap; justify-content:center; gap:4px 20px; max-width:480px; min-height:76px; align-content:flex-start; }
-.startup-churches li { font-size:14px; line-height:2; color:var(--muted); letter-spacing:1px; }
+.startup-year { font:64px/1.2 Georgia,serif; letter-spacing:1px; color:var(--accent-deep); margin:12px 0 24px; font-variant-numeric:lining-nums tabular-nums; }
+.startup-churches { list-style:none; padding:0; margin:0 auto 26px; display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:5px 12px; min-height:224px; align-content:start; }
+.startup-churches li { font-size:14px; line-height:1.8; color:var(--muted); letter-spacing:.4px; overflow-wrap:anywhere; }
 .startup-axis { position:relative; }
 #startup-progress { appearance:none; -webkit-appearance:none; display:block; width:100%; height:1px; border:0; background:var(--line); color:var(--accent-deep); border-radius:0; }
 #startup-progress::-webkit-progress-bar { background:var(--line); }
@@ -48,10 +48,10 @@ body.preparing-tour { overflow:hidden; }
 .startup-card .primary-button { margin-top:18px; }
 @media(max-width:720px) {
   .startup-loading { padding:28px 30px; }
-  .startup-brand { margin-bottom:42px; font-size:18px; }
-  .startup-year { font-size:88px; }
-  .startup-churches { gap:3px 16px; min-height:94px; margin-bottom:30px; }
-  .startup-churches li { font-size:13px; }
+  .startup-brand { margin-bottom:28px; font-size:18px; }
+  .startup-year { font-size:38px; margin-bottom:20px; }
+  .startup-churches { grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px 8px; min-height:240px; margin-bottom:24px; }
+  .startup-churches li { font-size:13px; letter-spacing:0; }
 }
 
 /* Colour belongs to type and fine rules; the header remains spare. */

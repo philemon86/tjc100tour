@@ -6,10 +6,11 @@ let sceneLoading = true, pendingScene = null;
 let loadingScene = null, preparingScene = null, navigationRequest = 0;
 let panelRequest = 0;
 let panelLoadPath = null, prefetchTimer = null;
-let startupBusy = false, churchYears = [];
-let startupTimer, startupStarted = 0, startupRendered = false, startupFinished = false;
+let startupBusy = false, churchPeriods = [];
+let startupTimer, startupGroupStarted = 0, startupGroupIndex = 0, startupRendered = false, startupFinished = false;
+const startupPeriodDuration = 3000;
 let arrivalScene = null, narrationAsked = false, autoNarration = false;
-const assetVersion = '20261011-immersive1';
+const assetVersion = '20261011-allchurches1';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile = window.matchMedia('(max-width: 720px)').matches;
 const panoramaPath = (scene) => scene.image;
@@ -34,17 +35,21 @@ function showStartupProgress({loaded,total,completed,count}) {
 }
 
 function stepStartupTimeline() {
-  const elapsed = Date.now() - startupStarted;
-  const fraction = Math.min(1,elapsed / 18000);
+  const now = Date.now();
+  // A hidden tab must not race past names the visitor has not seen.
+  if (document.hidden) { startupGroupStarted = now; startupTimer = setTimeout(stepStartupTimeline,100); return; }
+  let elapsed = now - startupGroupStarted;
+  if (elapsed >= startupPeriodDuration && startupGroupIndex < churchPeriods.length - 1) {
+    ++startupGroupIndex;
+    startupGroupStarted = now;
+    elapsed = 0;
+  }
+  const fraction = (startupGroupIndex + Math.min(1,elapsed / startupPeriodDuration)) / churchPeriods.length;
   $('startup-progress').value = fraction * 100;
   $('startup-marker').style.left = fraction * 100 + '%';
-  const firstYear = churchYears[0]?.year || 1926;
-  const lastYear = churchYears.at(-1)?.year || 2026;
-  // Hold each decade's names long enough to read; the fine line moves evenly.
-  const reachedYear = firstYear + Math.floor(fraction * 10) / 10 * (lastYear - firstYear);
-  const group = churchYears.filter(item => item.year <= reachedYear).at(-1);
-  if (group && $('startup-year').textContent !== String(group.year)) {
-    setText('startup-year',String(group.year));
+  const group = churchPeriods[startupGroupIndex];
+  if (group && $('startup-year').textContent !== group.label) {
+    setText('startup-year',group.label);
     const list = $('startup-churches');
     list.replaceChildren();
     for (const church of group.churches) {
@@ -53,7 +58,7 @@ function stepStartupTimeline() {
       list.append(item);
     }
   }
-  if (elapsed < 20000) startupTimer = setTimeout(stepStartupTimeline,100);
+  if (startupGroupIndex < churchPeriods.length - 1 || elapsed < startupPeriodDuration) startupTimer = setTimeout(stepStartupTimeline,100);
   else { startupFinished = true; revealTour(); }
 }
 
@@ -431,18 +436,25 @@ async function init() {
   if (!response.ok || !churchResponse.ok) throw new Error('無法讀取導覽資料');
   data = await response.json();
   const churches = await churchResponse.json();
-  const years = new Map();
+  const firstYear = Math.min(...churches.map(church => church.year));
+  const lastYear = Math.max(...churches.map(church => church.year));
+  const periods = new Map();
+  for (let year = firstYear; year <= lastYear; year += 5) periods.set(year,[]);
   for (const church of churches) {
-    if (!years.has(church.year)) years.set(church.year,[]);
-    years.get(church.year).push(church);
+    const period = firstYear + Math.floor((church.year - firstYear) / 5) * 5;
+    periods.get(period).push(church);
   }
-  churchYears = [...years].sort(([a],[b]) => a - b).map(([year,items]) => ({year,churches:items}));
-  if (!churchYears.length) throw new Error('教會建立年代未能載入');
-  setText('startup-first-year',String(churchYears[0].year));
-  setText('startup-last-year',String(churchYears.at(-1).year));
+  churchPeriods = [...periods].map(([year,items]) => {
+    const end = Math.min(year + 4,lastYear);
+    return {label:year === end ? String(year) : `${year}—${end}`,churches:items.sort((a,b) => a.date.localeCompare(b.date))};
+  });
+  if (!churchPeriods.length) throw new Error('教會建立年代未能載入');
+  setText('startup-first-year',String(firstYear));
+  setText('startup-last-year',String(lastYear));
   // The historical introduction has its own pace; downloading runs independently.
   setText('startup-year','');
-  startupStarted = Date.now();
+  startupGroupIndex = 0;
+  startupGroupStarted = Date.now();
   stepStartupTimeline();
   showStartupProgress({loaded:0,total:data.preloadAssets.reduce((sum,item) => sum + item.bytes,0),completed:0,count:data.preloadAssets.length});
   await assetStore.preload(data.preloadAssets,showStartupProgress);
