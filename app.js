@@ -7,7 +7,9 @@ let loadingScene = null, preparingScene = null, navigationRequest = 0;
 let panelRequest = 0;
 let panelLoadPath = null, prefetchTimer = null;
 let startupBusy = false, churchYears = [];
-const assetVersion = '20261011-timeline2';
+let startupTimer, startupStarted = 0, startupRendered = false, startupFinished = false;
+let arrivalScene = null, narrationAsked = false, autoNarration = false;
+const assetVersion = '20261011-immersive1';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile = window.matchMedia('(max-width: 720px)').matches;
 const panoramaPath = (scene) => scene.image;
@@ -27,13 +29,19 @@ const setText = (id,text) => { $(id).textContent = text; };
 function showStartupProgress({loaded,total,completed,count}) {
   const fraction = total > 0 ? Math.min(1,loaded / total) : 0;
   const percent = Math.floor(fraction * 100);
-  $('startup-progress').value = percent;
-  $('startup-marker').style.left = percent + '%';
   setText('startup-percent',percent + '%');
   setText('startup-count',`已下載 ${completed} / ${count} 張圖片`);
+}
+
+function stepStartupTimeline() {
+  const elapsed = Date.now() - startupStarted;
+  const fraction = Math.min(1,elapsed / 18000);
+  $('startup-progress').value = fraction * 100;
+  $('startup-marker').style.left = fraction * 100 + '%';
   const firstYear = churchYears[0]?.year || 1926;
   const lastYear = churchYears.at(-1)?.year || 2026;
-  const reachedYear = firstYear + Math.floor(fraction * (lastYear - firstYear));
+  // Hold each decade's names long enough to read; the fine line moves evenly.
+  const reachedYear = firstYear + Math.floor(fraction * 10) / 10 * (lastYear - firstYear);
   const group = churchYears.filter(item => item.year <= reachedYear).at(-1);
   if (group && $('startup-year').textContent !== String(group.year)) {
     setText('startup-year',String(group.year));
@@ -45,27 +53,37 @@ function showStartupProgress({loaded,total,completed,count}) {
       list.append(item);
     }
   }
-  // Announce completion and errors, rather than every downloaded chunk.
-  if (completed === count && count > 0) setText('startup-message','正在開啟展廳');
+  if (elapsed < 20000) startupTimer = setTimeout(stepStartupTimeline,100);
+  else { startupFinished = true; revealTour(); }
 }
 
 function completeStartup() {
+  startupRendered = true;
+  revealTour();
+}
+
+function revealTour() {
+  if (!startupRendered || !startupFinished || $('startup-loading').hidden) return;
   $('startup-loading').hidden = true;
   $('site-content').inert = false;
   $('site-content').removeAttribute('inert');
   $('site-content').setAttribute('aria-busy','false');
   document.body.classList.remove('preparing-tour');
+  offerNarration();
 }
 
 async function startTour() {
   if (startupBusy) return;
   startupBusy = true;
+  clearTimeout(startupTimer);
+  startupRendered = startupFinished = false;
   $('startup-retry').hidden = true;
   $('startup-loading').dataset.state = 'loading';
   $('startup-message').setAttribute('role','status');
   setText('startup-message','正在載入展廳');
   try { await init(); }
   catch (error) {
+    clearTimeout(startupTimer);
     $('startup-loading').dataset.state = 'error';
     $('startup-message').setAttribute('role','alert');
     setText('startup-message','暫時無法載入，請再試一次。');
@@ -164,6 +182,7 @@ document.querySelectorAll('[data-tab]').forEach(button => button.addEventListene
 document.querySelectorAll('[data-go-tour]').forEach(button => button.addEventListener('click',() => { showTab('tour'); window.scrollTo({top:0,behavior:reducedMotion?'instant':'smooth'}); }));
 $('help-button').addEventListener('click',() => openDialog('help-dialog'));
 $('route-button').addEventListener('click',() => openDialog('route-dialog'));
+$('story-button').addEventListener('click',() => openDialog('story-dialog'));
 $('track-selector').addEventListener('click',() => openDialog('audio-dialog'));
 $('all-audio-button').addEventListener('click',() => openDialog('audio-dialog'));
 
@@ -184,8 +203,11 @@ function makeHotspot(div,args) {
 async function goToScene(id) {
   if (!data.scenes[id]) return;
   $('route-dialog').close();
+  $('story-dialog').close();
+  $('narration-dialog').close();
   showTab('tour',false);
-  ui.audio.pause(); stopRotation();
+  if (data.scenes[id].department !== data.scenes[currentScene]?.department) ui.audio.pause();
+  stopRotation();
   if ((!viewer || loadingScene) && !loadFailed) { pendingScene = id; return; }
   const request = ++navigationRequest;
   pendingScene = null;
@@ -231,6 +253,13 @@ function updateScene(id) {
   const next = data.route[(routeIndex + 1) % data.route.length];
   setText('next-title',data.scenes[next].title);
   $('next-station').onclick = () => goToScene(next);
+  setText('route-position',`${String(routeIndex + 1).padStart(2,'0')} / ${String(data.route.length).padStart(2,'0')}`);
+  setText('route-current',data.scenes[routeId].title);
+  const previous = data.route[(routeIndex + data.route.length - 1) % data.route.length];
+  $('previous-scene').onclick = () => goToScene(previous);
+  $('next-scene').onclick = () => goToScene(next);
+  $('previous-scene').setAttribute('aria-label','上一站：' + data.scenes[previous].title);
+  $('next-scene').setAttribute('aria-label','下一站：' + data.scenes[next].title);
   document.querySelectorAll('[data-scene]').forEach(button => {
     const active = button.dataset.scene === routeId;
     button.classList.toggle('active',active);
@@ -246,14 +275,35 @@ function updateScene(id) {
   $('panel-button').onclick = () => openPanel(panels[0]);
   $('panel-button').onpointerenter = () => warmPanel(panels[0]);
   $('panel-button').onfocus = () => warmPanel(panels[0]);
-  setText('audio-status',scene.department === '文宣處' ? '可選聽文宣處各段語音；點擊播放開始聆聽。' : '此處尚無專屬語音，可另選聽文宣處或宣道處。');
+  setText('audio-status',!ui.audio.paused ? '正在播放。您可以一邊聆聽，一邊環視展廳。' : scene.department === '文宣處' ? '可選聽文宣處各段語音；點擊播放開始聆聽。' : '此處尚無專屬語音，可另選聽文宣處或宣道處。');
   history.replaceState(null,'','#tour/' + id);
-  const card = document.querySelector(`.scene-card[data-scene="${routeId}"]`);
-  if (card) {
-    const strip = $('scene-strip');
-    const cardLeft = card.offsetLeft - strip.offsetLeft;
-    if (cardLeft < strip.scrollLeft || cardLeft + card.offsetWidth > strip.scrollLeft + strip.clientWidth) strip.scrollTo({left:cardLeft,behavior:reducedMotion?'instant':'smooth'});
-  }
+  offerNarration();
+}
+
+function offerNarration() {
+  if (!$('startup-loading').hidden || sceneLoading || document.body.dataset.page === 'history') return;
+  const scene = data.scenes[currentScene];
+  const previousDepartment = data.scenes[arrivalScene]?.department;
+  arrivalScene = currentScene;
+  if (scene.department !== '文宣處' || previousDepartment === '文宣處') return;
+  if (data.tracks[currentTrack]?.floor !== '7F') selectTrack(0);
+  if (autoNarration) { void playAudio(); return; }
+  if (narrationAsked) return;
+  narrationAsked = true;
+  openDialog('narration-dialog');
+}
+$('narration-start').addEventListener('click',() => {
+  autoNarration = $('narration-auto').checked;
+  $('auto-narration').checked = autoNarration;
+  $('narration-dialog').close();
+  void playAudio();
+});
+$('narration-skip').addEventListener('click',() => $('narration-dialog').close());
+$('auto-narration').addEventListener('change',event => { autoNarration = event.target.checked; });
+$('quick-audio').addEventListener('click',() => ui.audio.paused ? playAudio() : ui.audio.pause());
+function updateQuickAudio() {
+  setText('quick-audio',ui.audio.paused ? '聆聽導覽' : '暫停語音');
+  $('quick-audio').setAttribute('aria-pressed',String(!ui.audio.paused));
 }
 
 function stopRotation() {
@@ -301,14 +351,27 @@ async function playAudio() {
   cancelPrefetch();
   setText('audio-status','正在準備語音…');
   try { await ui.audio.play(); setText('audio-status','正在播放。您可以一邊聆聽，一邊環視展廳。'); }
-  catch (_) { setText('audio-status','播放未能啟動，請再按一次播放；也請確認裝置音量。'); }
+  catch (_) {
+    setText('audio-status','播放未能啟動，請再按一次播放；也請確認裝置音量。');
+    updateQuickAudio();
+    if (autoNarration && data.scenes[currentScene]?.department === '文宣處' && !$('startup-loading').hidden && !document.hidden) {
+      $('narration-auto').checked = true;
+      openDialog('narration-dialog');
+    }
+  }
 }
 $('play-button').addEventListener('click',() => ui.audio.paused ? playAudio() : ui.audio.pause());
 ui.audio.addEventListener('play',() => { $('play-icon').innerHTML = '<path d="M7 5h4v14H7Zm6 0h4v14h-4Z" fill="currentColor" stroke="none"/>'; $('play-button').setAttribute('aria-label','暫停語音'); });
 ui.audio.addEventListener('pause',() => { $('play-icon').innerHTML = '<path d="m9 5 11 7-11 7Z" fill="currentColor" stroke="none"/>'; $('play-button').setAttribute('aria-label','播放語音'); if (ui.audio.currentTime > 0 && !ui.audio.ended) setText('audio-status','已暫停，按下播放即可繼續聆聽。'); });
 ui.audio.addEventListener('loadedmetadata',() => setText('duration',formatTime(ui.audio.duration)));
+ui.audio.addEventListener('play',updateQuickAudio);
+ui.audio.addEventListener('pause',updateQuickAudio);
 ui.audio.addEventListener('timeupdate',() => { setText('current-time',formatTime(ui.audio.currentTime)); if (ui.audio.duration) $('audio-seek').value = ui.audio.currentTime / ui.audio.duration * 100; });
-ui.audio.addEventListener('ended',() => setText('audio-status','這一段故事已播放完畢。您可以選擇下一段語音。'));
+ui.audio.addEventListener('ended',() => {
+  updateQuickAudio();
+  if (data.scenes[currentScene]?.department === '文宣處' && data.tracks[currentTrack]?.floor === '7F' && data.tracks[currentTrack + 1]?.floor === '7F') selectTrack(currentTrack + 1,true);
+  else setText('audio-status','這一段故事已播放完畢。您可以選擇下一段語音。');
+});
 ui.audio.addEventListener('error',() => setText('audio-status','這段語音未能載入，請重試或選擇另一段。'));
 $('audio-seek').addEventListener('input',event => { if (Number.isFinite(ui.audio.duration)) ui.audio.currentTime = Number(event.target.value) / 100 * ui.audio.duration; });
 $('speed-button').addEventListener('click',() => { const rates = [1,1.25,1.5,.75]; const next = rates[(rates.indexOf(ui.audio.playbackRate)+1)%rates.length]; ui.audio.defaultPlaybackRate = next; ui.audio.playbackRate = next; $('speed-button').textContent = next + '×'; $('speed-button').setAttribute('aria-label','播放速度，' + next + '倍'); });
@@ -377,27 +440,21 @@ async function init() {
   if (!churchYears.length) throw new Error('教會建立年代未能載入');
   setText('startup-first-year',String(churchYears[0].year));
   setText('startup-last-year',String(churchYears.at(-1).year));
-  // Use real downloaded bytes to move through the supplied establishment years.
+  // The historical introduction has its own pace; downloading runs independently.
   setText('startup-year','');
+  startupStarted = Date.now();
+  stepStartupTimeline();
   showStartupProgress({loaded:0,total:data.preloadAssets.reduce((sum,item) => sum + item.bytes,0),completed:0,count:data.preloadAssets.length});
   await assetStore.preload(data.preloadAssets,showStartupProgress);
   // All paths are local; the site does not depend on Google Drive download tokens.
   data.route.forEach((id,index) => {
     const scene = data.scenes[id];
-    const button = document.createElement('button');
-    button.className = 'scene-card'; button.dataset.scene = id;
     const image = document.createElement('img'); image.src = assetStore.source(scene.thumb); image.alt = scene.title + '實景縮圖'; image.loading = 'lazy'; image.decoding = 'async'; image.fetchPriority = 'low';
-    const label = document.createElement('span'); label.className = 'scene-card-label';
-    const number = document.createElement('span'); number.textContent = String(index+1).padStart(2,'0');
-    const title = document.createElement('strong'); title.textContent = scene.title;
-    label.append(title,number); button.append(image,label);
-    button.addEventListener('click',() => goToScene(id)); $('scene-strip').append(button);
     const entry = document.createElement('button'); entry.className = 'route-entry'; entry.dataset.scene = id;
     const entryNumber = document.createElement('b'); entryNumber.textContent = String(index+1).padStart(2,'0');
     const copy = document.createElement('span'); const name = document.createElement('strong'); name.textContent = scene.title; const location = document.createElement('small'); location.textContent = scene.location;
     copy.append(name,location); entry.append(entryNumber,image.cloneNode(),copy); entry.addEventListener('click',() => goToScene(id)); $('route-list').append(entry);
   });
-  setText('scene-count',`${data.route.length}個停留點 · 七樓實景`);
   data.tracks.forEach((track,index) => {
     const button = document.createElement('button'); button.className = 'audio-entry'; button.dataset.track = String(index);
     const icon = document.createElement('span'); icon.className = 'audio-entry-icon'; icon.textContent = '▷';
@@ -427,11 +484,12 @@ async function init() {
       updateScene(id);
       clearViewerStatus(); loadFailed = false; sceneLoading = false; loadingScene = null; $('fallback-image').hidden = true;
       completeStartup();
+      offerNarration();
       const next = pendingScene; pendingScene = null;
       if (next && next !== currentScene) goToScene(next);
       else prefetchNextScene(currentScene);
     });
-    viewer.on('scenechange',id => { loadingScene = id; ui.audio.pause(); stopRotation(); });
+    viewer.on('scenechange',id => { loadingScene = id; if (data.scenes[id].department !== data.scenes[currentScene]?.department) ui.audio.pause(); stopRotation(); });
     viewer.on('error',message => { const id = loadingScene || viewer.getScene() || currentScene; ++navigationRequest; loadFailed = true; sceneLoading = false; loadingScene = preparingScene = pendingScene = null; updateScene(id); showFallbackPhoto(id,'360°全景暫時無法顯示，目前顯示照片；可重新整理重試，或繼續選擇展區與聆聽語音。'); completeStartup(); console.warn(message); });
     viewer.on('mousedown',() => { stopRotation(); $('drag-tip').style.opacity = '.65'; });
     viewer.on('touchstart',stopRotation);
