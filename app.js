@@ -3,13 +3,20 @@ const $ = (id) => document.getElementById(id);
 const ui = { audio: $('audio'), status: $('viewer-status') };
 let data, viewer, currentScene, currentTrack, rotating = false, loadFailed = false;
 let sceneLoading = true, pendingScene = null;
+let loadingScene = null, preparingScene = null, navigationRequest = 0;
 let panelRequest = 0;
-let prefetchTimer = null, prefetchController = null, prefetchPath = null;
-const prefetched = new Set();
-const assetVersion = '20261010-direct1';
+let panelLoadPath = null, prefetchTimer = null;
+const assetVersion = '20261011-fast1';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile = window.matchMedia('(max-width: 720px)').matches;
 const panoramaPath = (scene) => mobile || navigator.connection?.saveData ? scene.lowImage : scene.image;
+const panelPath = (panel) => (mobile || navigator.connection?.saveData ? panel.smallImage : panel.readingImage) || panel.path;
+const sceneConfigs = {};
+const sceneImageLimit = mobile || navigator.connection?.saveData ? 2 : 3;
+const sceneImages = TourImages.createCache({limit:sceneImageLimit,onEvict(path) {
+  for (const scene of Object.values(sceneConfigs)) if (scene.panorama === path) scene.preloadedImage = null;
+}});
+const panelImages = TourImages.createCache({limit:2});
 const formatTime = (n) => Number.isFinite(n) ? `${String(Math.floor(n / 60)).padStart(2,'0')}:${String(Math.floor(n % 60)).padStart(2,'0')}` : '--:--';
 const iconArrow = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6M12 8v12"/></svg>';
 const iconInfo = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10v7"/><circle cx="12" cy="6.5" r=".5" fill="currentColor"/></svg>';
@@ -39,7 +46,10 @@ function showFallbackPhoto(id, message) {
 
 function cancelPrefetch(nextPath) {
   clearTimeout(prefetchTimer);
-  if (prefetchPath !== nextPath) prefetchController?.abort();
+  const keep = [nextPath];
+  for (const id of [currentScene,preparingScene,loadingScene]) if (data?.scenes[id]) keep.push(panoramaPath(data.scenes[id]));
+  sceneImages.cancelExcept(keep);
+  panelImages.cancelExcept(panelLoadPath ? [panelLoadPath] : []);
 }
 
 function prefetchNextScene(id) {
@@ -49,19 +59,25 @@ function prefetchNextScene(id) {
   const scene = data.scenes[id];
   const routeIndex = data.route.indexOf(scene.parent || id);
   const nextId = data.route[(routeIndex + 1) % data.route.length];
-  const path = panoramaPath(data.scenes[nextId]);
-  if (prefetched.has(path)) return;
-  // Warm only the next stop after the current panorama is ready.
+  const candidates = [...new Set([nextId,...(scene.links || []).map(link => link.target),scene.alternate])]
+    .filter(target => target && target !== id).slice(0,sceneImageLimit - 1);
+  // Prepare nearby images one at a time, after the current view is interactive.
   prefetchTimer = setTimeout(async () => {
-    if (sceneLoading || currentScene !== id || document.hidden || !ui.audio.paused) return;
-    const controller = new AbortController();
-    prefetchController = controller; prefetchPath = path;
-    try {
-      const response = await fetch(path,{cache:'force-cache',priority:'low',signal:controller.signal});
-      if (response.ok) { await response.blob(); prefetched.add(path); }
-    } catch (_) { /* Prefetch failure must not interrupt a visit. */ }
-    finally { if (prefetchController === controller) { prefetchController = null; prefetchPath = null; } }
-  },1200);
+    for (const target of candidates) {
+      if (sceneLoading || currentScene !== id || document.hidden || !ui.audio.paused || $('panel-dialog').open) return;
+      try {
+        const image = await sceneImages.load(panoramaPath(data.scenes[target]),'low');
+        if (sceneLoading || currentScene !== id) return;
+        sceneConfigs[target].preloadedImage = image;
+      } catch (_) { /* A failed warmup must not interrupt a visit. */ }
+    }
+  },400);
+}
+
+function warmPanel(panelId) {
+  const panel = data.panels.find(item => item.id === panelId);
+  if (!panel || sceneLoading || navigator.connection?.saveData || /(^|-)2g$/.test(navigator.connection?.effectiveType || '')) return;
+  panelImages.load(panelPath(panel),'low').catch(() => {});
 }
 
 function showTab(name, writeHash = true) {
@@ -105,23 +121,44 @@ function makeHotspot(div,args) {
   label.className = 'hotspot-label'; label.textContent = args.label;
   div.append(button,label);
   button.addEventListener('click',event => { event.stopPropagation(); if (args.panel) openPanel(args.panel); else goToScene(args.target); });
+  if (args.panel) {
+    button.addEventListener('pointerenter',() => warmPanel(args.panel));
+    button.addEventListener('focus',() => warmPanel(args.panel));
+  }
 }
 
-function goToScene(id) {
+async function goToScene(id) {
   if (!data.scenes[id]) return;
   $('route-dialog').close();
   showTab('tour',false);
   ui.audio.pause(); stopRotation();
-  if (sceneLoading && viewer && !loadFailed) { pendingScene = id; return; }
-  if (id === currentScene && viewer && !loadFailed) return;
+  if ((!viewer || loadingScene) && !loadFailed) { pendingScene = id; return; }
+  const request = ++navigationRequest;
+  pendingScene = null;
+  preparingScene = id;
   cancelPrefetch(panoramaPath(data.scenes[id]));
+  if (id === currentScene && viewer && !loadFailed) {
+    preparingScene = null; sceneLoading = false; clearViewerStatus(); return;
+  }
   if (viewer && !loadFailed) {
     showViewerStatus('正在載入下一站…');
     sceneLoading = true;
-    viewer.loadScene(id,data.scenes[id].pitch || 0,data.scenes[id].yaw,mobile ? 85 : 95);
+    try {
+      const image = await sceneImages.load(panoramaPath(data.scenes[id]),'high');
+      if (request !== navigationRequest) return;
+      sceneConfigs[id].preloadedImage = image;
+      viewer.addScene(id,sceneConfigs[id]);
+      preparingScene = null;
+      loadingScene = id;
+      viewer.loadScene(id,data.scenes[id].pitch || 0,data.scenes[id].yaw,mobile ? 85 : 95);
+    } catch (_) {
+      if (request !== navigationRequest) return;
+      preparingScene = null; sceneLoading = false;
+      showViewerStatus('這一站暫時無法載入，可再點一次重試。','error');
+    }
   } else {
     showFallbackPhoto(id,'360°全景暫時無法顯示，目前顯示照片；可重新整理重試，或繼續選擇展區與聆聽語音。');
-    sceneLoading = false;
+    preparingScene = null; sceneLoading = false;
     updateScene(id);
   }
 }
@@ -153,6 +190,8 @@ function updateScene(id) {
   const primaryPanel = data.panels.find(panel => panel.id === panels[0]);
   if (primaryPanel) $('panel-button').textContent = '閱讀' + (primaryPanel.shortTitle || primaryPanel.title) + ' ↗';
   $('panel-button').onclick = () => openPanel(panels[0]);
+  $('panel-button').onpointerenter = () => warmPanel(panels[0]);
+  $('panel-button').onfocus = () => warmPanel(panels[0]);
   setText('audio-status',scene.department === '文宣處' ? '可選聽文宣處各段語音；點擊播放開始聆聽。' : '此處尚無專屬語音，可另選聽文宣處或宣道處。');
   history.replaceState(null,'','#tour/' + id);
   const card = document.querySelector(`.scene-card[data-scene="${routeId}"]`);
@@ -227,39 +266,35 @@ async function openPanel(panelId) {
   const dialog = $('panel-dialog');
   const content = $('panel-content');
   const status = $('panel-status');
+  panelLoadPath = panelPath(panel);
+  cancelPrefetch();
   // Remove the previous decoded image before changing exhibit labels.
   // Each physical reading point opens only its own original.
   $('panel-image').hidden = true;
-  $('panel-image').removeAttribute('src');
+  const placeholder = document.createElement('img');
+  placeholder.id = 'panel-image'; placeholder.hidden = true; placeholder.alt = '展板';
+  $('panel-image').replaceWith(placeholder);
   setText('panel-title',panel.title);
   $('panel-original').href = panel.path;
   content.setAttribute('aria-busy','true');
-  status.textContent = '正在準備這張原圖…';
+  status.textContent = '正在準備圖片…';
   status.setAttribute('role','status');
   status.hidden = false;
   openDialog('panel-dialog');
   dialog.scrollTop = 0;
-  const image = new Image();
-  image.id = 'panel-image';
-  image.alt = panel.title + '完整展板';
-  image.loading = 'eager';
-  image.decoding = 'async';
   try {
-    const loaded = new Promise((resolve,reject) => {
-      image.onload = resolve;
-      image.onerror = () => reject(new Error('展板原圖未能載入'));
-    });
-    image.src = panel.path;
-    await loaded;
-    if (image.decode) await image.decode();
+    const image = await panelImages.load(panelLoadPath,'high');
     // A slow earlier request must never replace a newly opened exhibit.
     if (request !== panelRequest || !dialog.open) return;
+    image.id = 'panel-image';
+    image.alt = panel.title + '完整展板';
+    image.hidden = false;
     $('panel-image').replaceWith(image);
     status.hidden = true;
     content.setAttribute('aria-busy','false');
   } catch (_) {
     if (request !== panelRequest || !dialog.open) return;
-    status.textContent = '這張原圖暫時無法載入，可點「開啟原圖放大」重試。';
+    status.textContent = '圖片暫時無法載入，可點「開啟原圖放大」查看。';
     status.setAttribute('role','alert');
     content.setAttribute('aria-busy','false');
   }
@@ -267,8 +302,11 @@ async function openPanel(panelId) {
 $('panel-dialog').addEventListener('close',() => {
   if ($('panel-dialog').open) return;
   ++panelRequest;
+  panelLoadPath = null;
+  panelImages.cancelExcept([]);
   $('panel-image').hidden = true;
   $('panel-content').setAttribute('aria-busy','false');
+  if (!sceneLoading) prefetchNextScene(currentScene);
 });
 
 async function init() {
@@ -303,26 +341,29 @@ async function init() {
   const hashId = location.hash.startsWith('#tour/') ? decodeURIComponent(location.hash.slice(6)) : '';
   currentScene = data.scenes[hashId] ? hashId : data.firstScene;
   const startHistory = location.hash === '#history';
-  const configScenes = {};
   for (const [id,scene] of Object.entries(data.scenes)) {
-    configScenes[id] = { type:'equirectangular', panorama:panoramaPath(scene), yaw:scene.yaw, pitch:scene.pitch||0, hfov:mobile?85:95, hotSpots:(scene.links||[]).map(link => ({pitch:link.pitch ?? -17,yaw:link.yaw,cssClass:'tour-hotspot',createTooltipFunc:makeHotspot,createTooltipArgs:{label:data.scenes[link.target].title,target:link.target}})) };
-    for (const hotspot of (scene.info || [])) configScenes[id].hotSpots.push({pitch:hotspot.pitch || 0,yaw:hotspot.yaw,cssClass:'tour-hotspot info-hotspot',createTooltipFunc:makeHotspot,createTooltipArgs:{label:hotspot.label,panel:hotspot.panel}});
+    sceneConfigs[id] = { type:'equirectangular', panorama:panoramaPath(scene), preloadedImage:null, yaw:scene.yaw, pitch:scene.pitch||0, hfov:mobile?85:95, hotSpots:(scene.links||[]).map(link => ({pitch:link.pitch ?? -17,yaw:link.yaw,cssClass:'tour-hotspot',createTooltipFunc:makeHotspot,createTooltipArgs:{label:data.scenes[link.target].title,target:link.target}})) };
+    for (const hotspot of (scene.info || [])) sceneConfigs[id].hotSpots.push({pitch:hotspot.pitch || 0,yaw:hotspot.yaw,cssClass:'tour-hotspot info-hotspot',createTooltipFunc:makeHotspot,createTooltipArgs:{label:hotspot.label,panel:hotspot.panel}});
   }
   selectTrack(0);
   showViewerStatus('正在載入360°實景…');
   try {
     if (!window.pannellum) throw new Error('全景元件未載入');
-    // Native scene fading keeps the previous rendered perspective until the new
-    // panorama is ready. A nearly instant fade retains this during reduced motion.
-    viewer = pannellum.viewer('panorama',{default:{firstScene:currentScene,autoLoad:true,showControls:false,mouseZoom:true,sceneFadeDuration:reducedMotion?1:180,ignoreGPanoXMP:true,minHfov:45,maxHfov:115,escapeHTML:true,orientationOnByDefault:false,strings:{loadingLabel:'正在載入全景…',genericWebGLError:'此裝置暫時無法顯示360全景。',noWebGLError:'此瀏覽器不支援360全景。',textureSizeError:'裝置無法載入這張全景，請使用較新的瀏覽器。'}},scenes:configScenes});
+    sceneImages.protect(panoramaPath(data.scenes[currentScene]));
+    sceneConfigs[currentScene].preloadedImage = await sceneImages.load(panoramaPath(data.scenes[currentScene]),'high');
+    // Preserve the rendered perspective with a canvas copy, without PNG encoding.
+    viewer = pannellum.viewer('panorama',{default:{firstScene:currentScene,autoLoad:true,showControls:false,mouseZoom:true,sceneFadeDuration:reducedMotion?0:120,ignoreGPanoXMP:true,minHfov:45,maxHfov:115,escapeHTML:true,orientationOnByDefault:false,strings:{loadingLabel:'正在載入全景…',genericWebGLError:'此裝置暫時無法顯示360全景。',noWebGLError:'此瀏覽器不支援360全景。',textureSizeError:'裝置無法載入這張全景，請使用較新的瀏覽器。'}},scenes:sceneConfigs});
     viewer.on('load',() => {
-      clearViewerStatus(); loadFailed = false; sceneLoading = false; $('fallback-image').hidden = true;
+      const id = viewer.getScene();
+      sceneImages.protect(panoramaPath(data.scenes[id]));
+      updateScene(id);
+      clearViewerStatus(); loadFailed = false; sceneLoading = false; loadingScene = null; $('fallback-image').hidden = true;
       const next = pendingScene; pendingScene = null;
       if (next && next !== currentScene) goToScene(next);
       else prefetchNextScene(currentScene);
     });
-    viewer.on('scenechange',id => { ui.audio.pause(); stopRotation(); updateScene(id); });
-    viewer.on('error',message => { loadFailed = true; sceneLoading = false; pendingScene = null; showFallbackPhoto(currentScene,'360°全景暫時無法顯示，目前顯示照片；可重新整理重試，或繼續選擇展區與聆聽語音。'); console.warn(message); });
+    viewer.on('scenechange',id => { loadingScene = id; ui.audio.pause(); stopRotation(); });
+    viewer.on('error',message => { const id = loadingScene || viewer.getScene() || currentScene; ++navigationRequest; loadFailed = true; sceneLoading = false; loadingScene = preparingScene = pendingScene = null; updateScene(id); showFallbackPhoto(id,'360°全景暫時無法顯示，目前顯示照片；可重新整理重試，或繼續選擇展區與聆聽語音。'); console.warn(message); });
     viewer.on('mousedown',() => { stopRotation(); $('drag-tip').style.opacity = '.65'; });
     viewer.on('touchstart',stopRotation);
   } catch (error) { loadFailed = true; sceneLoading = false; showFallbackPhoto(currentScene,'360°全景暫時無法啟動，目前顯示照片；可重新整理重試，或以展區選單繼續參觀。'); console.error(error); }

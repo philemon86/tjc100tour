@@ -636,7 +636,9 @@
       "sourceId": "1Xh_PMJMarzLaaelYpGqiv48snA_jxPfa",
       "sourceFilename": "96dpi_認識聖靈月刊.jpg",
       "id": "holy-spirit-magazine",
-      "shortTitle": "聖靈月刊展板"
+      "shortTitle": "聖靈月刊展板",
+      "smallImage": "assets/panels/holy-spirit-magazine-900.webp",
+      "readingImage": "assets/panels/holy-spirit-magazine-1800.webp"
     },
     {
       "title": "臺灣真耶穌教會文宣大事記",
@@ -644,56 +646,72 @@
       "sourceId": "1IdTQT2QNYF8jqgmICdgNwIN_RQyQc-5H",
       "sourceFilename": "96dpi_文宣大事記.jpg",
       "id": "wen-xuan-timeline",
-      "shortTitle": "文宣大事記"
+      "shortTitle": "文宣大事記",
+      "smallImage": "assets/panels/wen-xuan-timeline-900.webp",
+      "readingImage": "assets/panels/wen-xuan-timeline-1800.webp"
     },
     {
       "title": "刊物掛軸3｜1935–1941｜福音刊物",
       "path": "assets/panels/wen-xuan-scroll-3.jpg",
       "sourceId": "1LcHlMcbd0lvGnfQMesLeLWrKvkNaj1KZ",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_3.jpg",
-      "id": "wen-xuan-scroll-3"
+      "id": "wen-xuan-scroll-3",
+      "smallImage": "assets/panels/wen-xuan-scroll-3-900.webp",
+      "readingImage": "assets/panels/wen-xuan-scroll-3-1800.webp"
     },
     {
       "title": "刊物掛軸5｜1960–2000｜宗教教育",
       "path": "assets/panels/wen-xuan-scroll-5.jpg",
       "sourceId": "1PZAiKq8YnSMk6pff2qgSSOXRE4zxF2wT",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_5.jpg",
-      "id": "wen-xuan-scroll-5"
+      "id": "wen-xuan-scroll-5",
+      "smallImage": "assets/panels/wen-xuan-scroll-5-900.webp",
+      "readingImage": "assets/panels/wen-xuan-scroll-5-1800.webp"
     },
     {
       "title": "刊物掛軸6｜1965–2001｜青年刊物",
       "path": "assets/panels/wen-xuan-scroll-6.jpg",
       "sourceId": "1Hp7XaLqW3lhBs4n62B8VCQeyDSxNH9I8",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_6.jpg",
-      "id": "wen-xuan-scroll-6"
+      "id": "wen-xuan-scroll-6",
+      "smallImage": "assets/panels/wen-xuan-scroll-6-900.webp",
+      "readingImage": "assets/panels/wen-xuan-scroll-6-1800.webp"
     },
     {
       "title": "刊物掛軸4｜1951–1977｜聖靈刊物",
       "path": "assets/panels/wen-xuan-scroll-4.jpg",
       "sourceId": "1_SM42TDaUXklJFxzXMwVht1Q3J0BOfr_",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_4.jpg",
-      "id": "wen-xuan-scroll-4"
+      "id": "wen-xuan-scroll-4",
+      "smallImage": "assets/panels/wen-xuan-scroll-4-900.webp",
+      "readingImage": "assets/panels/wen-xuan-scroll-4-1800.webp"
     },
     {
       "title": "刊物掛軸2｜1926–1932｜聖靈報",
       "path": "assets/panels/wen-xuan-scroll-2.jpg",
       "sourceId": "1YaRDjN0F8-GedLO7fdbtMrivsSXkKaE2",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_2.jpg",
-      "id": "wen-xuan-scroll-2"
+      "id": "wen-xuan-scroll-2",
+      "smallImage": "assets/panels/wen-xuan-scroll-2-900.webp",
+      "readingImage": "assets/panels/wen-xuan-scroll-2-1800.webp"
     },
     {
       "title": "刊物掛軸1｜1919–1924｜初期報刊",
       "path": "assets/panels/wen-xuan-scroll-1.jpg",
       "sourceId": "1Tyl6O5nXrUIYd1t2AEkdzq22YYgg2T0_",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_1.jpg",
-      "id": "wen-xuan-scroll-1"
+      "id": "wen-xuan-scroll-1",
+      "smallImage": "assets/panels/wen-xuan-scroll-1-900.webp",
+      "readingImage": "assets/panels/wen-xuan-scroll-1-1800.webp"
     },
     {
       "title": "刊物掛軸7｜跨越100｜文宣序言",
       "path": "assets/panels/wen-xuan-scroll-7.jpg",
       "sourceId": "1Kr_gxbGrqT5K7va6vg98AeH4fX35mJ07",
       "sourceFilename": "120dpi_七張掛軸_單透布_頁面_7.jpg",
-      "id": "wen-xuan-scroll-7"
+      "id": "wen-xuan-scroll-7",
+      "smallImage": "assets/panels/wen-xuan-scroll-7-900.webp",
+      "readingImage": "assets/panels/wen-xuan-scroll-7-1800.webp"
     }
   ],
   "history": [
