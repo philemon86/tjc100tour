@@ -7,7 +7,7 @@ let loadingScene = null, preparingScene = null, navigationRequest = 0;
 let panelRequest = 0;
 let panelLoadPath = null, prefetchTimer = null;
 let startupBusy = false, churchYears = [];
-const assetVersion = '20261011-original1';
+const assetVersion = '20261011-timeline2';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile = window.matchMedia('(max-width: 720px)').matches;
 const panoramaPath = (scene) => scene.image;
@@ -28,21 +28,25 @@ function showStartupProgress({loaded,total,completed,count}) {
   const fraction = total > 0 ? Math.min(1,loaded / total) : 0;
   const percent = Math.floor(fraction * 100);
   $('startup-progress').value = percent;
+  $('startup-marker').style.left = percent + '%';
   setText('startup-percent',percent + '%');
   setText('startup-count',`已下載 ${completed} / ${count} 張圖片`);
-  const group = churchYears[Math.min(churchYears.length - 1,Math.floor(fraction * (churchYears.length - 1)))];
+  const firstYear = churchYears[0]?.year || 1926;
+  const lastYear = churchYears.at(-1)?.year || 2026;
+  const reachedYear = firstYear + Math.floor(fraction * (lastYear - firstYear));
+  const group = churchYears.filter(item => item.year <= reachedYear).at(-1);
   if (group && $('startup-year').textContent !== String(group.year)) {
     setText('startup-year',String(group.year));
     const list = $('startup-churches');
     list.replaceChildren();
     for (const church of group.churches) {
       const item = document.createElement('li');
-      item.textContent = church.church_name + ' · ' + church.date.replaceAll('-','.');
+      item.textContent = church.church_name;
       list.append(item);
     }
   }
   // Announce completion and errors, rather than every downloaded chunk.
-  if (completed === count && count > 0) setText('startup-message','圖片已下載完成，正在開啟展廳。');
+  if (completed === count && count > 0) setText('startup-message','正在開啟展廳');
 }
 
 function completeStartup() {
@@ -59,12 +63,12 @@ async function startTour() {
   $('startup-retry').hidden = true;
   $('startup-loading').dataset.state = 'loading';
   $('startup-message').setAttribute('role','status');
-  setText('startup-message','正在預先下載清晰圖片，完成後自動進入展廳。');
+  setText('startup-message','正在載入展廳');
   try { await init(); }
   catch (error) {
     $('startup-loading').dataset.state = 'error';
     $('startup-message').setAttribute('role','alert');
-    setText('startup-message','圖片準備尚未完成，請確認連線後重試；已下載的圖片會保留。');
+    setText('startup-message','暫時無法載入，請再試一次。');
     $('startup-retry').hidden = false;
     console.error(error);
   } finally { startupBusy = false; }

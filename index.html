@@ -10,29 +10,31 @@
   <link rel="icon" href="assets/icons/favicon-32.png?v=20261011-favicon1" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png?v=20261011-favicon1" sizes="180x180">
   <link rel="stylesheet" href="vendor/pannellum.css">
-  <link rel="stylesheet" href="style.css?v=20261011-original1">
+  <link rel="stylesheet" href="style.css?v=20261011-timeline2">
   <script src="vendor/pannellum.js?v=20261011-fast1" defer></script>
   <script src="asset-preloader.js?v=20261011-original1" defer></script>
   <script src="image-cache.js?v=20261011-original1" defer></script>
-  <script src="app.js?v=20261011-original1" defer></script>
+  <script src="app.js?v=20261011-timeline2" defer></script>
 </head>
 <body data-page="tour" class="preparing-tour">
   <section id="startup-loading" class="startup-loading" aria-labelledby="startup-title" data-state="loading">
     <div class="startup-card">
-      <p class="startup-brand">百年足跡 <span>1926—2026</span></p>
-      <h1 id="startup-title">沿著教會建立年代，<br>走進百年足跡。</h1>
+      <h1 id="startup-title" class="startup-brand">百年足跡</h1>
       <div class="startup-history" aria-label="教會建立年代">
-        <p class="startup-history-label">教會建立足跡</p>
+        <p class="startup-history-label">教會建立</p>
         <p id="startup-year" class="startup-year">1926</p>
         <ul id="startup-churches" class="startup-churches" aria-label="這一年建立的教會"></ul>
       </div>
-      <div class="startup-progress-label"><label for="startup-progress">準備清晰圖片</label><span id="startup-percent">0%</span></div>
-      <progress id="startup-progress" max="100" value="0">0%</progress>
-      <div class="startup-years"><span id="startup-first-year">1926</span><span id="startup-last-year">2026</span></div>
-      <p id="startup-count" class="startup-count">正在讀取圖片清單…</p>
-      <p id="startup-message" class="startup-message" role="status">正在預先下載清晰圖片，完成後自動進入展廳。</p>
-      <button id="startup-retry" class="primary-button" hidden>繼續下載</button>
-      <p class="startup-source">建立年代依提供的教會資料呈現。</p>
+      <label for="startup-progress" class="sr-only">展廳下載進度</label>
+      <div class="startup-axis">
+        <progress id="startup-progress" max="100" value="0">0%</progress>
+        <div class="startup-ticks" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <span id="startup-marker" class="startup-marker" aria-hidden="true"></span>
+      </div>
+      <div class="startup-years"><span id="startup-first-year">1926</span><span>1976</span><span id="startup-last-year">2026</span></div>
+      <div class="startup-status"><p id="startup-message" class="startup-message" role="status">正在載入展廳</p><span id="startup-percent" aria-hidden="true">0%</span></div>
+      <p id="startup-count" class="sr-only">正在讀取圖片清單</p>
+      <button id="startup-retry" class="primary-button" hidden>再試一次</button>
     </div>
   </section>
   <div id="site-content" inert aria-busy="true">
